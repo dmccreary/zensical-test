@@ -1,0 +1,42 @@
+{
+  "title": "Bouncing Ball",
+  "description": "Interactive simulation demonstrating basic physics concepts of motion, velocity, and collision detection. Features a ball bouncing within boundaries with user-controllable speed parameter.",
+  "creator": "Dan McCreary",
+  "date": "2026-09-12",
+  "subject": [
+    "Physics",
+    "Motion",
+    "Velocity",
+    "Collision Detection",
+    "Kinematics"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en-US",
+  "rights": "CC BY-NC-SA 4.0",
+  "contributor": [
+    "Claude Code"
+  ],
+  "identifier": "https://dmccreary.github.io/zensical-test/sims/bouncing-ball/",
+  "publisher": "Zensical Test",
+  "educationalLevel": "Middle School, High School",
+  "learningResourceType": "simulation",
+  "audience": "Students, Educators",
+  "version": "1.0.0",
+  "bloomLevel": [
+    "Understand",
+    "Apply"
+  ],
+  "concepts": [
+    "Motion",
+    "Velocity",
+    "Collision",
+    "Boundary Detection",
+    "Interactive Controls"
+  ],
+  "prerequisites": [
+    "Basic understanding of motion",
+    "Coordinate systems"
+  ],
+  "library": "p5.js"
+}
