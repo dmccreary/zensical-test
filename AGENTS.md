@@ -65,13 +65,23 @@ docs/img/                   cover image, license badge, mascot poses
 - This project also builds with **Zensical** (`zensical build`, `zensical
   serve`), the Rust-based successor to MkDocs from the Material team. It reads
   the same `mkdocs.yml`, so keep changes compatible with both builders. Two
-  gaps as of Zensical 0.0.61: `hooks:` and `exclude_docs:` are silently
-  ignored (so `plugins/social_override.py` doesn't run and og:image/
-  twitter:image tags are absent from Zensical builds), and the `social`
-  plugin isn't implemented yet. `mkdocs build --strict` remains the
-  authoritative check until Zensical reaches parity. **Never add an entry
-  matching the config file's own name (`mkdocs.yml`) to `watch:`** — this
-  makes Zensical silently emit zero pages. **Never start or kill `zensical
+  gaps remain as of Zensical 0.0.61: `exclude_docs:` is silently ignored (no
+  workaround yet; harmless until a `TODO.md`/`image-prompt*.md` file exists),
+  and the `social` plugin (Cairo-based auto-generated card *images*) isn't
+  implemented. **Per-page social preview meta tags (`og:image` /
+  `twitter:image`) DO work on both builders** — implemented as a theme
+  override at `overrides/main.html` (extends `base.html`'s `extrahead`
+  block) rather than a `hooks:` entry, since `hooks:` (Python
+  post-processing) is unsupported under Zensical but template overrides are
+  plain Jinja/MiniJinja and work on both. **Do not reintroduce
+  `plugins/social_override.py` or a `hooks:` block** — the override
+  supersedes it; keeping both would double-emit the same meta tags under
+  mkdocs. `mkdocs build --strict` remains the authoritative check until
+  Zensical reaches full parity. **Never add an entry matching the config
+  file's own name (`mkdocs.yml`) to `watch:`** — this makes Zensical
+  silently emit zero pages
+  ([zensical/zensical#934](https://github.com/zensical/zensical/issues/934)).
+  **Never start or kill `zensical
   serve`** either, for the same reason as `mkdocs serve` above.
 
 ## MicroSim rules

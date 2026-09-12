@@ -8,17 +8,15 @@ site_description: 'Test of migrating an mkdocs-material book to the new Zensical
 site_author: 'Dan McCreary'
 site_url: 'https://dmccreary.github.io/zensical-test/'
 
-# Hooks — runs local Python before/after page processing.
-# `plugins/social_override.py` injects og:title, og:description, og:image,
-# og:type, og:url, and twitter:* meta tags on every page using each page's
-# frontmatter `title:` / `description:` / `image:` (falling back to the site-
-# wide values and `img/cover.png`). This is the Cairo-free path to social-
-# media previews — works without `pip install "mkdocs-material[imaging]"`.
-# If the `social` plugin below is ever enabled, the same hook also rewrites
-# its auto-generated `/assets/images/social/...` URLs to point at the
-# declared cover image. Verify the result with `bk-check-social-cover`.
-hooks:
-  - plugins/social_override.py
+# Social preview meta tags (og:image / twitter:image, driven by each page's
+# `image:` frontmatter) are implemented as a theme override in
+# overrides/main.html, NOT as a `hooks:` entry. `hooks:` (Python
+# post-processing) is unsupported under Zensical, but template overrides are
+# supported by both builders since they're plain Jinja/MiniJinja -- so this
+# one file replaces plugins/social_override.py and works identically on
+# `mkdocs build` and `zensical build`. See overrides/main.html for the logic
+# and logs/zensical-test.md for how this was verified byte-for-byte across
+# both builders. Verify the result with `bk-check-social-cover`.
 
 # Repository
 repo_name: 'GitHub Repo'
@@ -62,6 +60,9 @@ theme:
   # `variant: classic` tells Zensical to render the Material-for-MkDocs look;
   # mkdocs-material itself ignores this key (harmless under the old builder).
   variant: classic
+  # overrides/main.html extends base.html's extrahead block for the social
+  # preview meta tags described above.
+  custom_dir: overrides
   # Once a logo is generated, point this at docs/img/logo.png or a mascot pose:
   # logo: img/logo.png
   # favicon: img/favicon.ico

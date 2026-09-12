@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{#
+  Per-page social preview meta tags (og:image / twitter:image), driven by a
+  page's own `image:` frontmatter. Deliberately a no-op for pages that don't
+  declare `image:` -- there is no site-wide default image, so a future
+  social-card-generating plugin can still own those pages. See
+  plugins/social_override.py for the mkdocs-hook equivalent of this same
+  logic; that hook doesn't run under Zensical (`hooks:` is unsupported
+  there), so this template override is what makes the feature work on both
+  builders from one source of truth.
+#}
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.meta and page.meta.image %}
+    {% set image_url = config.site_url ~ page.meta.image %}
+    {% set social_title = (page.meta.title if page.meta.title else config.site_name) %}
+    {% set social_description = (page.meta.description if page.meta.description else config.site_description) %}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ social_title }}">
+    <meta property="og:description" content="{{ social_description }}">
+    <meta property="og:image" content="{{ image_url }}">
+    <meta property="og:url" content="{{ page.canonical_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ social_title }}">
+    <meta name="twitter:description" content="{{ social_description }}">
+    <meta name="twitter:image" content="{{ image_url }}">
+  {% endif %}
+{% endblock %}

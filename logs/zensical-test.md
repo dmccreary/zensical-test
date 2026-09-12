@@ -382,15 +382,109 @@ rebuilds and redeploys automatically.
 
 ---
 
+## 4. Recover social preview meta tags without `hooks:`
+
+**User's concern:** of the two known Zensical gaps, missing `exclude_docs:`
+was tolerable, but losing per-page social-card overrides (`og:image` /
+`twitter:image` driven by a page's `image:` frontmatter) was called out as a
+real loss of functionality. Asked whether this could be added to Zensical.
+
+### 4.1 Two angles considered
+
+1. **Contribute it upstream to Zensical itself.** Not practical yet: Zensical
+   is a Rust codebase moving away from a Python-hook plugin model entirely,
+   toward a "module system" whose public API isn't released yet (per the
+   [roadmap](https://zensical.org/about/roadmap/), Python bindings via PyO3
+   are planned but not public). The `social` plugin is already listed
+   in-progress on their own compatibility roadmap — a third-party PR isn't
+   realistic before that public API exists.
+2. **Reproduce the feature locally, without waiting on upstream.** This is
+   what got built (below) — it doesn't need any Zensical change at all.
+
+### 4.2 Key discovery: mkdocs-material's base theme has *no* og/twitter tags
+
+Checked what Zensical emits with zero hooks/plugins active:
+
+```bash
+grep -iE '<meta (name|property)="(og|twitter|description)' site/index.html
+# → only <meta name="description" ...>
+```
+
+Then checked `mkdocs-material`'s own installed template source
+(`site-packages/material/templates/base.html` and everything under
+`templates/`) for `og:`/`twitter:` tags — **none exist**. Those tags are
+*only* ever injected by the `social` plugin's own Python post-processing
+(the same technique `plugins/social_override.py` already used). This means
+the feature was never a built-in theme capability on the mkdocs side either
+— it was always plugin/hook-injected — which meant the fix didn't need to
+special-case Zensical, just move the existing logic to a mechanism both
+builders share.
+
+### 4.3 The fix: a theme override instead of a hook
+
+`base.html` (both mkdocs-material and Zensical's `classic` variant) exposes
+an empty `{% block extrahead %}{% endblock %}` specifically for this kind of
+customization, extended via `theme.custom_dir`. Template overrides are pure
+Jinja (mkdocs) / MiniJinja (Zensical) — no Python involved — and are
+officially supported by both builders, unlike `hooks:`.
+
+Prototyped in an isolated copy (`/tmp/social-override-poc`) at
+`overrides/main.html`, extending `base.html`'s `extrahead` block. First pass
+defaulted every imageless page to the site cover — caught immediately as
+exactly the "historical footgun" `init-textbook.md` already warns about
+(clobbering a future per-page auto-generated card). Corrected to match
+`plugins/social_override.py`'s actual semantics exactly: **no-op unless the
+page declares `image:` in its frontmatter** — no site-wide default.
+
+Verified byte-for-byte identical output between builders, on both a page
+with `image:` (the home page) and one without (`about.md`):
+
+```bash
+# Homepage — both builders produce the identical 9 meta tags
+mkdocs build --strict && grep -iE '<meta (property|name)="(og|twitter)' site/index.html
+zensical build -s      && grep -iE '<meta (property|name)="(og|twitter)' site/index.html
+
+# about.md (no `image:`) — zero tags on both, confirming the no-op path
+mkdocs build --strict && grep -icE '<meta (property|name)="(og|twitter)' site/about/index.html  # → 0
+zensical build -s      && grep -icE '<meta (property|name)="(og|twitter)' site/about/index.html  # → 0
+```
+
+### 4.4 Applied to the real project
+
+- Added [overrides/main.html](../overrides/main.html) — extends `base.html`,
+  reproduces `plugins/social_override.py`'s exact conditional logic in
+  Jinja/MiniJinja, and additionally emits `og:type`, `og:title`,
+  `og:description`, `og:url`, and `twitter:card`/`title`/`description` (the
+  old hook only ever touched the two image tags; those companions are
+  needed for platforms like Twitter/Slack to render a full-size image card
+  rather than falling back to a small thumbnail or no preview at all).
+- `mkdocs.yml`: added `theme.custom_dir: overrides`; removed the `hooks:`
+  block entirely (replaced by a comment pointing at the new mechanism).
+- Deleted `plugins/social_override.py` and the now-empty `plugins/`
+  directory — keeping both the hook and the override active would have
+  double-emitted the same meta tags under `mkdocs`.
+- Updated `AGENTS.md` to warn against reintroducing the old hook.
+- Re-verified `mkdocs build --strict` and `zensical build -s` both still
+  pass clean on the real project, with matching og/twitter output.
+
+Net effect: the social-preview-override feature now works identically on
+both builders today, with no dependency on Zensical's `social` plugin ever
+shipping.
+
+---
+
 ## Open items / things worth revisiting later
 
 - Watch [zensical/zensical#934](https://github.com/zensical/zensical/issues/934)
   for a fix, and re-test whether the `watch:` self-reference can be safely
   restored once it lands.
-- **`hooks:` / `exclude_docs:` / `social` plugin** are unsupported in
-  Zensical as of v0.0.61. Revisit `plugins/social_override.py`'s Zensical
-  behavior once Zensical's `social` plugin work lands (tracked in their
-  public roadmap as "in progress").
+- **`exclude_docs:`** is still unsupported in Zensical as of v0.0.61 — no
+  workaround implemented (harmless today; no `TODO.md`/`image-prompt*.md`
+  files exist yet). **The `social` plugin gap (§4) is now mitigated** by
+  `overrides/main.html`; what's still genuinely missing is Cairo-style
+  *auto-generated* card images (text-on-image compositing) for pages that
+  don't declare their own `image:` — revisit if/when Zensical's native
+  `social` plugin ships.
 - The duplicated page title (`Zensical Test - Zensical Test`) is pre-existing
   scaffold behavior (page frontmatter `title:` happens to equal `site_name`
   for the home page) and reproduces identically under both `mkdocs` and
