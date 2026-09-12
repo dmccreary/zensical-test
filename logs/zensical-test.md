@@ -187,9 +187,24 @@ own `watch:` list contains an entry equal to that same filename
 no warnings, even under `--strict`. This is copied directly from MkDocs's own
 convention (`mkdocs.yml` commonly watches itself so `mkdocs serve` reloads on
 config edits), so any project migrating an existing `mkdocs.yml` is likely to
-hit it. Not filed upstream during this session — the user was offered the
-option and can request it be filed at
-<https://github.com/zensical/zensical/issues>.
+hit it.
+
+**Filed upstream:** [zensical/zensical#934](https://github.com/zensical/zensical/issues/934).
+Before filing, searched the tracker and found closely related prior art —
+[#726](https://github.com/zensical/zensical/issues/726) described the same
+"empty site, no HTML pages" symptom as a race between the config/theme
+watch order and the docs-directory watch, and was closed as a duplicate of
+[#641](https://github.com/zensical/zensical/issues/641) (closed "resolved"
+2026-09-02, though #641's actual symptom — stale link-validation warnings on
+large sites — is different from the empty-site case). Confirmed on `zensical`
+0.0.61 (installed after the #641 fix shipped) that the plain race from #726
+is fixed (`watch: [docs]` alone builds correctly, 5/5 runs), but a
+self-referencing `watch:` entry reintroduces a **100%-deterministic** version
+of the same empty-site symptom (0/5 → 5/5 across five repeated runs each
+way). The issue includes a 2-file, 7-line minimal reproduction and the
+determinism data instead of the template's requested `.zip` attachment,
+which isn't practical to produce via `gh issue create` (no interactive file
+upload from the CLI).
 
 ### 2.4 Fixes applied to `mkdocs.yml`
 
@@ -369,9 +384,9 @@ rebuilds and redeploys automatically.
 
 ## Open items / things worth revisiting later
 
-- **File the Zensical bug upstream** (§2.3) if it's still reproducible on a
-  newer release — a self-referencing `watch:` entry silently zeroing the
-  build is a sharp edge for anyone migrating an existing `mkdocs.yml`.
+- Watch [zensical/zensical#934](https://github.com/zensical/zensical/issues/934)
+  for a fix, and re-test whether the `watch:` self-reference can be safely
+  restored once it lands.
 - **`hooks:` / `exclude_docs:` / `social` plugin** are unsupported in
   Zensical as of v0.0.61. Revisit `plugins/social_override.py`'s Zensical
   behavior once Zensical's `social` plugin work lands (tracked in their
