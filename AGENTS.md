@@ -67,11 +67,20 @@ docs/img/                   cover image, license badge, mascot poses
   faster of the two — but `mkdocs build --strict` remains the one
   **authoritative** check (see *Quality assurance* below): it catches nav
   omissions and broken links that Zensical doesn't yet flag, so a clean
-  `zensical build` alone never means a change is verified. Two
-  gaps remain as of Zensical 0.0.61: `exclude_docs:` is silently ignored (no
-  workaround yet; harmless until a `TODO.md`/`image-prompt*.md` file exists),
-  and the `social` plugin (Cairo-based auto-generated card *images*) isn't
-  implemented. **Per-page social preview meta tags (`og:image` /
+  `zensical build` alone never means a change is verified. Three
+  gaps remain as of Zensical 0.0.61 (third one confirmed still present in
+  0.0.62): `exclude_docs:` is silently ignored (no workaround yet; harmless
+  until a `TODO.md`/`image-prompt*.md` file exists); the `social` plugin
+  (Cairo-based auto-generated card *images*) isn't implemented; and
+  `zensical serve`'s dev server doesn't rewrite relative `<iframe src>` paths
+  the way `zensical build` does — a MicroSim iframe embedded with a plain
+  relative path (e.g. `sims/<sim-id>/main.html`) can 404 in local preview
+  while rendering fine once actually deployed (`zensical build` and the live
+  site both rewrite it correctly; only `serve` doesn't). Verify against
+  `zensical build`'s output or the live site before "fixing" an iframe path
+  that looks broken only in `zensical serve` — see
+  [zensical/zensical#943](https://github.com/zensical/zensical/issues/943).
+  **Per-page social preview meta tags (`og:image` /
   `twitter:image`) DO work on both builders** — implemented as a theme
   override at `overrides/main.html` (extends `base.html`'s `extrahead`
   block) rather than a `hooks:` entry, since `hooks:` (Python

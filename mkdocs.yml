@@ -44,6 +44,7 @@ nav:
     - ZRX Parallel Build Pipeline: sims/zrx-parallel-build-pipeline/index.md
   
   - References: references.md
+  - Glossary: glossary.md
   - License: license.md
   - Contact: contact.md
 
