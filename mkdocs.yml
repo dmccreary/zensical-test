@@ -36,6 +36,7 @@ nav:
   - Migration Steps: migration-steps.md
   - Background on Web Publishing Tools: background-on-web-publishing-tools.md
   - Proposed AGENTS.md Addition: proposed-agents-addition.md
+  - Equation Rendering Test (KaTeX): katex-test.md
   
   - MicroSims:
     - List of MicroSims: sims/index.md
@@ -45,6 +46,7 @@ nav:
   
   - References: references.md
   - Glossary: glossary.md
+  - Feature Checklist: feature-checklist.md
   - License: license.md
   - Contact: contact.md
 
@@ -60,9 +62,10 @@ theme:
   custom_dir: overrides
   static_templates:
     - 404.html
+  
   # Once a logo is generated, point this at docs/img/logo.png or a mascot pose:
-  # logo: img/logo.png
-  # favicon: img/favicon.ico
+  logo: img/mascot/welcome.png
+  favicon: img/favicon.ico
   palette:
     primary: 'indigo'
     accent: 'orange'
@@ -122,16 +125,27 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  # Enable KaTeX LaTeX equation rendering
+  # Using \(...\) for inline math (currency-safe: plain $20 is never
+  # mistaken for math) and $$...$$ or \[...\] for display math.
   - pymdownx.arithmatex:
       generic: true
+      inline_syntax: ['round']
+      block_syntax: ['dollar', 'square']
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 # Custom CSS — file is created by init-textbook
 extra_css:
   - css/extra.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
 
-# Custom JavaScript — uncomment once a corresponding file exists
-# extra_javascript:
-#   - js/extra.js
+# Custom JavaScript
+extra_javascript:
+  - js/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
 
 # Exclude prompt scratch files and TODOs from build/search/sitemap.
 # NOTE: `exclude_docs` is silently ignored under Zensical as of 0.0.61 (see
