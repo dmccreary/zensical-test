@@ -41,8 +41,8 @@ These features come by default with MkDocs Material or require minimal configura
 | Site title and description | :white_check_mark: | Trivial | In `mkdocs.yml` |
 | Site author metadata | :white_check_mark: | Trivial | In `mkdocs.yml` |
 | GitHub repository link | :white_check_mark: | Trivial | `repo_url` configured |
-| Custom logo | :x: | Trivial | Custom logo in header |
-| Custom favicon | :x: | Trivial | Custom icon in browser tab |
+| Custom logo | :white_check_mark: | Trivial | Custom logo in header |
+| Custom favicon | :white_check_mark: | Trivial | Custom icon in browser tab |
 | Color theme (primary/accent) | :white_check_mark: | Trivial | Custom color palette |
 | Footer navigation (prev/next) | :white_check_mark: | Trivial | Previous/Next chapter links at bottom of each page |
 | Navigation expand on hover | :white_check_mark: | Trivial | Sidebar sections expand when you hover over them |
@@ -68,7 +68,7 @@ These features make your content more engaging and easier to read.
 | Feature | Status | Effort | Notes |
 |---------|--------|--------|-------|
 | GLightBox (image zoom) | :white_check_mark: | Low | Click any image for lightbox popup; requires `mkdocs-glightbox` Python library |
-| KaTeX equation rendering | :x: | Low | Display beautiful math equations; uses `\(...\)` for inline, `$$...$$` for display |
+| KaTeX equation rendering | :white_check_mark: | Low | Display beautiful math equations; uses `\(...\)` for inline, `$$...$$` for display |
 | MathJax equation rendering | :x: | Low | Alternative math rendering with broader LaTeX support |
 | Admonitions (callout boxes) | :white_check_mark: | Trivial | Colored boxes for notes, warnings, tips, and examples |
 | Code blocks with copy button | :white_check_mark: | Trivial | One-click copy for all code examples |
@@ -79,7 +79,7 @@ These features make your content more engaging and easier to read.
 | Strikethrough text | :x: | Trivial | Use `~~text~~` syntax to cross out deprecated or incorrect info |
 | Magic links (auto-linking) | :x: | Trivial | URLs and emails automatically become clickable |
 | Snippets (file includes) | :white_check_mark: | Trivial | Use `--8<-- "file.md"` syntax to include content from other files |
-| Emoji support | :x: | Trivial | Use :emoji_name: shortcodes like :rocket: |
+| Emoji support | :white_check_mark: | Trivial | Use :emoji_name: shortcodes like :rocket: |
 | Collapsible details blocks | :white_check_mark: | Trivial | Hide/show content with expandable sections |
 | Mermaid diagrams | :white_check_mark: | Trivial | Flowcharts, sequence diagrams from text |
 
@@ -94,7 +94,7 @@ These are pages and files that support the entire textbook rather than individua
 | References page | :white_check_mark: | Medium | Curated bibliography with links — site-wide or per-chapter |
 | Per-chapter references | :x: | Medium | 0 chapter-level references.md files |
 | Custom CSS styling | :white_check_mark: | Low | Override theme colors, fonts, and layouts |
-| Custom JavaScript | :x: | Low | Add interactivity beyond built-in features |
+| Custom JavaScript | :white_check_mark: | Low | Add interactivity beyond built-in features |
 | Google Analytics | :white_check_mark: | Trivial | Track page views and user behavior |
 | Document status indicators | :white_check_mark: | Low | Colored dots in nav showing page lifecycle state (spec → prototype → ready) |
 

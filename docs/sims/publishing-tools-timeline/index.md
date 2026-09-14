@@ -1,6 +1,6 @@
 ---
-title: History of Documentation and Publishing Tools
-description: Interactive vis-timeline MicroSim tracing 60+ years of book and documentation publishing tools, from early formatters through Markdown, MkDocs, Rust, and Zensical.
+title: "History of Documentation and Publishing Tools"
+description: "Interactive vis-timeline MicroSim tracing 60+ years of book and documentation publishing tools, from early formatters through Markdown, MkDocs, Rust, and Zensical."
 image: /sims/publishing-tools-timeline/publishing-tools-timeline.png
 og:image: /sims/publishing-tools-timeline/publishing-tools-timeline.png
 twitter:image: /sims/publishing-tools-timeline/publishing-tools-timeline.png
@@ -12,7 +12,7 @@ quality_score: 0
 
 # History of Documentation and Publishing Tools
 
-<iframe src="main.html" height="892px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="902px" width="100%" scrolling="no"></iframe>
 
 [Run the History of Documentation and Publishing Tools MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 

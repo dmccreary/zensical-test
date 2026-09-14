@@ -1,6 +1,6 @@
 ---
-title: ZRX Parallel Build Pipeline
-description: Step through how Zensical's ZRX engine schedules a Markdown-to-HTML textbook build from a dependency graph, in parallel across CPU cores, versus a fixed one-task-at-a-time legacy order.
+title: "ZRX Parallel Build Pipeline"
+description: "Step through how Zensical's ZRX engine schedules a Markdown-to-HTML textbook build from a dependency graph, in parallel across CPU cores, versus a fixed one-task-at-a-time legacy order."
 image: /sims/zrx-parallel-build-pipeline/zrx-parallel-build-pipeline.png
 og:image: /sims/zrx-parallel-build-pipeline/zrx-parallel-build-pipeline.png
 twitter:image: /sims/zrx-parallel-build-pipeline/zrx-parallel-build-pipeline.png
