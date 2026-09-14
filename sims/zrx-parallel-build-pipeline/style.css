@@ -1,0 +1,279 @@
+/* ZRX Parallel Build Pipeline - vis-network-tutorial layout
+ * ===========================================================
+ *
+ * GRAPH POSITIONING NOTES:
+ * Node x,y positions live in the taskDefs array in the .js file.
+ * Camera position is set in positionView() after vis-network's
+ * auto-centering (see afterDrawing event in the .js file).
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: aliceblue;
+}
+
+/* ===========================================
+   MAIN CONTAINER & NETWORK CANVAS
+   =========================================== */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+}
+
+#network {
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+/* ===========================================
+   TITLE (Top Center)
+   =========================================== */
+.title {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 19px;
+    font-weight: bold;
+    color: black;
+    background-color: aliceblue;
+    padding: 2px 10px;
+    z-index: 10;
+}
+
+/* ===========================================
+   LEGEND (Upper Left)
+   =========================================== */
+.legend {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 6px 8px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+    font-size: 12px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid #333;
+}
+
+.color-pending { background-color: #e0e0e0; }
+.color-running { background-color: #ffd700; }
+.color-complete { background-color: #4caf50; }
+
+/* ===========================================
+   RIGHT PANEL (Controls & Status)
+   =========================================== */
+.right-panel {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 258px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.panel-box {
+    background-color: rgba(255, 255, 255, 0.96);
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.panel-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #444;
+}
+
+/* Mode select */
+.mode-row select {
+    width: 100%;
+    padding: 6px;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 1px solid #999;
+}
+
+/* Cores slider */
+.cores-row .cores-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.cores-row input[type="range"] {
+    width: 100%;
+}
+
+.cores-row.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.cores-note {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* Step counter + buttons */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.step-counter {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    padding: 9px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-primary {
+    background-color: #2196f3;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #1976d2;
+}
+
+.btn-primary:disabled {
+    background-color: #90caf9;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #757575;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #616161;
+}
+
+/* Status text */
+.status-text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #222;
+}
+
+/* Core assignment list */
+.core-list {
+    list-style: none;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.core-list li {
+    display: flex;
+    gap: 6px;
+}
+
+.core-list .core-id {
+    font-weight: bold;
+    color: #1976d2;
+    min-width: 52px;
+}
+
+.core-list .core-idle {
+    color: #999;
+    font-style: italic;
+}
+
+/* Comparison stats */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.stat-value {
+    font-weight: bold;
+}
+
+.stat-highlight {
+    color: #2e7d32;
+}
+
+.done-banner {
+    margin-top: 6px;
+    padding: 6px 8px;
+    background-color: #e8f5e9;
+    border: 1px solid #4caf50;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #2e7d32;
+    font-weight: bold;
+    display: none;
+}
+
+.done-banner.visible {
+    display: block;
+}
+
+/* ===========================================
+   RESPONSIVE STYLES
+   =========================================== */
+@media (max-width: 700px) {
+    .title {
+        font-size: 15px;
+    }
+
+    .right-panel {
+        width: 200px;
+    }
+
+    .legend {
+        transform: scale(0.85);
+        transform-origin: top left;
+    }
+}
