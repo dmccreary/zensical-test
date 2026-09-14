@@ -55,8 +55,11 @@ theme:
   # mkdocs-material itself ignores this key (harmless under the old builder).
   variant: classic
   # overrides/main.html extends base.html's extrahead block for the social
-  # preview meta tags described above.
+  # preview meta tags described above. overrides/404.html is the custom
+  # error page (Nova the Nautilus, warning pose).
   custom_dir: overrides
+  static_templates:
+    - 404.html
   # Once a logo is generated, point this at docs/img/logo.png or a mascot pose:
   # logo: img/logo.png
   # favicon: img/favicon.ico
