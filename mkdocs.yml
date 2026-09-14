@@ -51,9 +51,15 @@ nav:
       # - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
 
   - MicroSims:
-      - List of MicroSims: sims/index.md
-      - Bouncing Ball: sims/bouncing-ball/index.md
+    - List of MicroSims: sims/index.md
+    - Bouncing Ball: sims/bouncing-ball/index.md
+    - ZRX Parallel Build Pipeline: sims/zrx-parallel-build-pipeline/index.md
 
+
+
+  - Why Zensical?: why-zensical.md
+  - Proposed AGENTS.md Addition: proposed-agents-addition.md
+  - References: references.md
   - License: license.md
   - Contact: contact.md
 

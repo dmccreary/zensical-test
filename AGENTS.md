@@ -1,21 +1,15 @@
 # AI Agent Instructions — Zensical Test
 
-Welcome, Agent. You have been asked to generate, edit, or validate content for
-the **Zensical Test** intelligent textbook.
+Welcome, Agent. You have been asked to generate, edit, or validate content for the **Zensical Test** intelligent textbook.
 
-This file is the entry point for *every* coding agent working in this repo.
-`CLAUDE.md` contains only `@AGENTS.md`, so Claude Code, Codex, Cursor, and any
-other agent that looks for `AGENTS.md` all read the same instructions. Keep the
-rules here — never fork them into `CLAUDE.md`.
+This file is the entry point for *every* coding agent working in this repo. `CLAUDE.md` contains only `@AGENTS.md`, so Claude Code, Codex, Cursor, and any other agent that looks for `AGENTS.md` all read the same instructions. Keep the rules here — never fork them into `CLAUDE.md`.
 
 These rules ride **on top of** the author's global agent rules
-(`~/.claude/CLAUDE.md` for Claude Code). Where the two disagree, the global
-rules win.
+(`~/.claude/CLAUDE.md` for Claude Code). Where the two disagree, the global rules win.
 
 ## Read this before generating content
 
-Before you write or edit any student-facing markdown — chapters, quizzes, FAQ
-entries, glossary prose, lesson plans — you **MUST** read and follow:
+Before you write or edit any student-facing markdown — chapters, quizzes, FAQ, entries, glossary prose, lesson plans — you **MUST** read and follow:
 
 ```
 CONTENT-GENERATION-GUIDE.md
