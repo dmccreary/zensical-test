@@ -12,7 +12,7 @@ quality_score: 0
 
 # History of Documentation and Publishing Tools
 
-<iframe src="main.html" height="882px" width="100%" scrolling="no"></iframe>
+<iframe src="main.html" height="892px" width="100%" scrolling="no"></iframe>
 
 [Run the History of Documentation and Publishing Tools MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
