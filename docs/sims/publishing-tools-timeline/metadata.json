@@ -1,0 +1,58 @@
+{
+  "title": "History of Documentation and Publishing Tools",
+  "creator": "Dan McCreary",
+  "subject": "Documentation Tooling History",
+  "description": "Interactive vis-timeline MicroSim tracing 60+ years of book and documentation publishing tools, from early formatters through Markdown, MkDocs, Rust, and Zensical.",
+  "date": "2026-09-14",
+  "educational": {
+    "gradeLevel": [
+      "College",
+      "Professional Development"
+    ],
+    "subjectArea": "Technical Writing / Software Engineering",
+    "topic": "History of Documentation and Publishing Tools",
+    "learningObjectives": [
+      "Sequence the major markup languages (GML, SGML, HTML, XML, DocBook) and explain what limitation of the prior format each one addressed.",
+      "Explain why Markdown lacked a formal specification for a decade and how CommonMark resolved that ambiguity.",
+      "Describe why MkDocs going unmaintained, combined with a breaking MkDocs 2.0 proposal, motivated Zensical's Rust-based rewrite rather than a patch."
+    ],
+    "bloomsTaxonomy": "Understand",
+    "duration": "15-20 minutes",
+    "prerequisites": [
+      "Basic familiarity with markup languages such as HTML"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "vis-timeline",
+    "version": "7.7.3",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 880
+    },
+    "responsive": true,
+    "dependencies": [
+      "vis-timeline"
+    ],
+    "accessibility": {
+      "hasAltText": false,
+      "keyboardNavigable": false
+    }
+  },
+  "pedagogical": {
+    "teachingStrategy": "Interactive exploration with category filtering and click-for-detail",
+    "keyQuestions": [
+      "What problem did each new markup or publishing format solve that its predecessor did not?",
+      "Why does a lack of a formal specification cause real problems for tool builders?",
+      "Why did the Material for MkDocs team choose to rewrite rather than patch MkDocs?"
+    ],
+    "commonMisconceptions": [
+      "That Markdown has always had one precise, agreed-upon specification.",
+      "That Zensical is unrelated to MkDocs rather than a compatible successor reading the same mkdocs.yml."
+    ],
+    "assessmentOpportunities": [
+      "Ask learners to explain, for two adjacent timeline events, what specific limitation motivated the later tool."
+    ]
+  },
+  "chapter": ""
+}

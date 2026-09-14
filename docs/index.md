@@ -1,40 +1,37 @@
 ---
-title: 'Zensical Test'
-description: 'Test of migrating an mkdocs-material book to the new Zensical system'
+title: 'Migrating from Mkdocs to Zensical'
+description: 'A guide to upgrading your book-building pipeline from serial MkDocs builds to fast, Rust-powered parallel builds with Zensical.'
 image: img/cover.png
+og:image: img/cover.png
+twitter:image: img/cover.png
+hide:
+  - toc
 ---
+<style>
+.md-content__inner h1 {display: none !important;}
+</style>
 
-# Zensical Test
+# Migrating from Mkdocs to Zensical
 
 <figure markdown>
-  ![Zensical Test cover](./img/cover.png){ width="100%" }
+  ![Migrating from Mkdocs to Zensical cover](./img/cover.png){ width="100%" }
 </figure>
 
-Test of migrating an mkdocs-material book to the new Zensical system
+A guide to upgrading your book-building pipeline from MkDocs' single-threaded
+Python build to Zensical, the Rust-based successor from the Material for
+MkDocs team, and other Rust-enabled tools that let build steps run in
+parallel across CPU cores.
 
 ## Getting Started
 
-This is an intelligent textbook built with MkDocs Material. Use the navigation
-sidebar on the left to explore chapters, the learning graph, MicroSims, and
-supporting reference content.
+Use the navigation sidebar on the left to explore this guide.
 
-## Front Matter
-
-- **About** — audience, prerequisites, and how to read the book
-- **Course Description** — the seed document used to generate the learning graph
-
-## Chapters
-
-The main body of the book lives under [Chapters](chapters/index.md). Each
-chapter has its own folder with a two-digit prefix (e.g. `01-introduction`).
-
-## Learning Graph
-
-The [Learning Graph](learning-graph/index.md) shows how concepts depend on each
-other. Concepts are introduced in dependency order so prerequisites are always
-covered before they are used.
+- **About** — audience, prerequisites, and how to read this guide
+- **Why Zensical?** — the case for switching your build pipeline
+- **Migration Steps** — a step-by-step walkthrough for migrating your own book
 
 ## MicroSims
 
-Interactive simulations live under [MicroSims](sims/index.md). Each MicroSim
-focuses on one concept and is embeddable as an iframe inside chapter content.
+Interactive simulations live under [MicroSims](sims/index.md), including a
+side-by-side look at the serial MkDocs pipeline versus the parallel Zensical
+build.

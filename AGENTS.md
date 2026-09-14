@@ -34,7 +34,11 @@ Where things live:
 ```
 mkdocs.yml                  site config and nav (the single source of nav truth)
 CONTENT-GENERATION-GUIDE.md content rules — read before generating
-plugins/social_override.py  og:/twitter: meta-tag hook
+docs/migration-steps.md     step-by-step MkDocs -> Zensical migration guide;
+                             follow it when migrating a different repo
+overrides/main.html         og:/twitter: meta-tag theme override (replaced
+                             the old plugins/social_override.py hook — works
+                             on both builders, see Build and serve rules)
 docs/chapters/              chapter content, one directory per chapter
 docs/learning-graph/        concept list, taxonomy, dependency graph, metrics
 docs/sims/                  MicroSims, one directory per sim
@@ -58,7 +62,12 @@ docs/img/                   cover image, license badge, mascot poses
   tell the author.
 - This project also builds with **Zensical** (`zensical build`, `zensical
   serve`), the Rust-based successor to MkDocs from the Material team. It reads
-  the same `mkdocs.yml`, so keep changes compatible with both builders. Two
+  the same `mkdocs.yml`, so keep changes compatible with both builders.
+  **Prefer `zensical build` for a quick check while iterating** — it's the
+  faster of the two — but `mkdocs build --strict` remains the one
+  **authoritative** check (see *Quality assurance* below): it catches nav
+  omissions and broken links that Zensical doesn't yet flag, so a clean
+  `zensical build` alone never means a change is verified. Two
   gaps remain as of Zensical 0.0.61: `exclude_docs:` is silently ignored (no
   workaround yet; harmless until a `TODO.md`/`image-prompt*.md` file exists),
   and the `social` plugin (Cairo-based auto-generated card *images*) isn't
@@ -70,13 +79,54 @@ docs/img/                   cover image, license badge, mascot poses
   plain Jinja/MiniJinja and work on both. **Do not reintroduce
   `plugins/social_override.py` or a `hooks:` block** — the override
   supersedes it; keeping both would double-emit the same meta tags under
-  mkdocs. `mkdocs build --strict` remains the authoritative check until
-  Zensical reaches full parity. **Never add an entry matching the config
+  mkdocs. **Never add an entry matching the config
   file's own name (`mkdocs.yml`) to `watch:`** — this makes Zensical
   silently emit zero pages
   ([zensical/zensical#934](https://github.com/zensical/zensical/issues/934)).
   **Never start or kill `zensical
   serve`** either, for the same reason as `mkdocs serve` above.
+- **Prefer `uv` over `pip`** for any local Python environment work in this
+  repo — e.g. `uv pip install mkdocs mkdocs-material zensical` instead of
+  `pip install mkdocs mkdocs-material` / `pip install zensical` from the
+  README's *Installation* section. `uv` is a faster, drop-in-compatible
+  installer. Leave `.github/workflows/docs.yml`'s plain `pip install
+  zensical` step as-is unless asked to change it — it runs on a locked-down
+  `setup-python` CI image, exactly the case where falling back to `pip` is
+  correct.
+
+The same "verify parity, then default to the Rust successor" pattern used
+for Zensical/`uv` above extends further. None of the following are
+currently used in this repo, but if a future task introduces the left-hand
+tool, default to the right-hand one once its output is confirmed to match:
+
+| Legacy tool(s) | Rust-based successor |
+|---|---|
+| MkDocs + Material for MkDocs | Zensical (ZRX engine) |
+| `pip`, `pip-tools`, `venv`, `virtualenv`, `pyenv`, (partially) Poetry | `uv` |
+| `flake8`, `black`, `isort` | Ruff |
+| `mypy`, Pyright/Pylance | ty |
+| Webpack | Rspack |
+| esbuild/Rollup inside Vite | Rolldown |
+| Next.js's bundler | Turbopack |
+| ESLint, Prettier | Biome / oxlint / oxfmt |
+
+Full rationale and fallback caveats for all of these:
+[Proposed AGENTS.md Addition](docs/proposed-agents-addition.md).
+
+- **If asked to migrate a different repo from MkDocs to Zensical**, follow
+  [docs/migration-steps.md](docs/migration-steps.md) — the tested,
+  command-by-command checklist this project's own migration produced. Don't
+  reconstruct the process from general knowledge: the gotchas in there (the
+  self-referencing `watch:` bug, the `hooks:` replacement, the `gh-deploy`
+  deployment change) are each non-obvious and were rediscovered the hard way
+  exactly once, on this repo, so they don't need rediscovering again.
+- **This project deploys via GitHub Actions**
+  (`.github/workflows/docs.yml`), not `mkdocs gh-deploy` — and
+  `zensical gh-deploy` isn't a real command at all (`Error: No such command
+  'gh-deploy'`). Never modify the deploy workflow or this repository's
+  GitHub Pages settings without asking first; CI/CD and shared publishing
+  configuration always need explicit confirmation, no matter how confident
+  the change looks.
 
 ## MicroSim rules
 

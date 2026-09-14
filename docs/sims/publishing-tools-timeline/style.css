@@ -1,0 +1,249 @@
+/* History of Documentation and Publishing Tools - vis-timeline layout */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aliceblue;
+}
+
+.container {
+    width: 100%;
+    padding: 10px 12px 14px 12px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ===========================================
+   CATEGORY FILTER BUTTONS
+   =========================================== */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.filter-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #999;
+    border-radius: 16px;
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.filter-btn:hover {
+    background-color: #eef4fb;
+}
+
+.filter-btn.active {
+    color: white;
+    border-color: transparent;
+}
+
+.filter-btn[data-category="all"].active { background-color: #444; }
+.filter-btn[data-category="Early Publishing Tools"].active { background-color: #5c4033; }
+.filter-btn[data-category="Markup Languages"].active { background-color: #2465a8; }
+.filter-btn[data-category="Markdown Ecosystem"].active { background-color: #2e8b57; }
+.filter-btn[data-category="Modern Doc-Site Generators"].active { background-color: #b8860b; }
+.filter-btn[data-category="Rust & Zensical"].active { background-color: #b7410e; }
+
+/* ===========================================
+   TIMELINE CONTAINER
+   =========================================== */
+#timeline {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding-left: 160px;
+    padding-right: 160px;
+    overflow: hidden;
+}
+
+.vis-timeline {
+    overflow: visible !important;
+}
+
+.vis-panel.vis-center {
+    overflow: visible !important;
+}
+
+.vis-item .vis-item-overflow {
+    overflow: visible !important;
+}
+
+/* Ensure all item boxes fit their text */
+.vis-item .vis-item-content {
+    white-space: nowrap !important;
+    padding: 4px 8px !important;
+}
+.vis-item.vis-range {
+    min-width: fit-content !important;
+}
+.vis-item.vis-box {
+    min-width: fit-content !important;
+}
+
+.vis-item {
+    border-width: 2px !important;
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+
+.vis-item.ghost {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+.cat-early { background-color: #5c4033 !important; border-color: #3e2b1f !important; }
+.cat-markup { background-color: #2465a8 !important; border-color: #184a80 !important; }
+.cat-markdown { background-color: #2e8b57 !important; border-color: #1f6140 !important; }
+.cat-generators { background-color: #b8860b !important; border-color: #8a6608 !important; }
+.cat-rust { background-color: #b7410e !important; border-color: #8a310a !important; }
+
+.vis-tooltip {
+    background: #2c3e50 !important;
+    color: white !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    max-width: 300px !important;
+    line-height: 1.4 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+}
+
+.vis-tooltip div {
+    max-width: 280px !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+/* ===========================================
+   NAVIGATION CONTROLS
+   =========================================== */
+.nav-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.nav-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background-color: #2465a8;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #184a80;
+}
+
+/* ===========================================
+   LEGEND
+   =========================================== */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #333;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    margin-right: 5px;
+    border: 1px solid rgba(0,0,0,0.25);
+}
+
+/* ===========================================
+   INFO PANEL
+   =========================================== */
+.info-panel {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    min-height: 70px;
+}
+
+.info-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.info-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.info-notes {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #555;
+    font-style: italic;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed #ccc;
+}
+
+/* ===========================================
+   RESPONSIVE STYLES
+   =========================================== */
+@media (max-width: 700px) {
+    .title {
+        font-size: 16px;
+    }
+    .filter-btn {
+        font-size: 11px;
+        padding: 5px 9px;
+    }
+    #timeline {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
