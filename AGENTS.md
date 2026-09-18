@@ -63,6 +63,12 @@ docs/img/                   cover image, license badge, mascot poses
 - This project also builds with **Zensical** (`zensical build`, `zensical
   serve`), the Rust-based successor to MkDocs from the Material team. It reads
   the same `mkdocs.yml`, so keep changes compatible with both builders.
+  **Use the `zensical` conda env for this project, not the shared `mkdocs`
+  env.** `mkdocs-material`'s `pymdown-extensions` pin and Zensical's
+  `pymdown-extensions` requirement conflict when both packages are installed
+  together, so a project that uses Zensical cannot share the `mkdocs` env used
+  by other MkDocs Material sites. Run `zensical build`/`serve` and `mkdocs
+  build --strict` both from `/usr/local/Caskroom/miniforge/base/envs/zensical`.
   **Prefer `zensical build` for a quick check while iterating** — it's the
   faster of the two — but `mkdocs build --strict` remains the one
   **authoritative** check (see *Quality assurance* below): it catches nav
