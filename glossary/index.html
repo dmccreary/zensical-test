@@ -1,0 +1,2858 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A detailed guide to migrating an mkdocs-material book to the new Zensical system">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/zensical-test/glossary/">
+      
+      
+        <link rel="prev" href="../references/">
+      
+      
+        <link rel="next" href="../feature-checklist/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Glossary - Migrating from MkDocs to Zensical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-6NE4PMF8NV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-6NE4PMF8NV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-6NE4PMF8NV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+  
+
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#glossary-of-terms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Migrating from MkDocs to Zensical" class="md-header__button md-logo" aria-label="Migrating from MkDocs to Zensical" data-md-component="logo">
+      
+  <img src="../img/mascot/welcome.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Migrating from MkDocs to Zensical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Glossary
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/zensical-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Migrating from MkDocs to Zensical" class="md-nav__button md-logo" aria-label="Migrating from MkDocs to Zensical" data-md-component="logo">
+      
+  <img src="../img/mascot/welcome.png" alt="logo">
+
+    </a>
+    Migrating from MkDocs to Zensical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/zensical-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-zensical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Zensical?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Steps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-on-web-publishing-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background on Web Publishing Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposed-agents-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposed AGENTS.md Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../katex-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equation Rendering Test (KaTeX)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#admonition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admonition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AGENTS.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biome-oxlint-and-oxfmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Biome, oxlint, and oxfmt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blooms-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloom's Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-artifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Artifact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundler-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundler (JavaScript)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chartjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-continuous-integration-continuous-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (Continuous Integration / Continuous Deployment)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claudemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLAUDE.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI (Command-Line Interface)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commonmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CommonMark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creative-commons-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creative Commons License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directed-acyclic-graph-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directed Acyclic Graph (DAG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DocBook
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#front-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Front Matter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gml-generalized-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GML (Generalized Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-build-lifecycle-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook (Build Lifecycle Hook)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#html-hypertext-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTML (HyperText Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iframe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incremental-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jinja-minijinja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jinja / MiniJinja
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markup Language
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Material for MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ontology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ontology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-graph-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Graph Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p5js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p5.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Poetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyo3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyO3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyproject.toml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#race-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Race Condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolldown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rspack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rspack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUNOFF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sgml-standard-generalized-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SGML (Standard Generalized Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-source-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Source Publishing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-threaded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Threaded
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software Fork
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-site-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Site Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supply-chain-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supply Chain Risk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#symlink-symbolic-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symlink (Symbolic Link)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TeX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        troff
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vertices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visjs-vis-network-vis-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vis.js (vis-network / vis-timeline)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watch-list-file-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watch List (File Watcher)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zensical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zensical
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zrx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZRX
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#admonition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admonition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AGENTS.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biome-oxlint-and-oxfmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Biome, oxlint, and oxfmt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blooms-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloom's Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-artifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Artifact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundler-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundler (JavaScript)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chartjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-continuous-integration-continuous-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (Continuous Integration / Continuous Deployment)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claudemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLAUDE.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-command-line-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI (Command-Line Interface)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commonmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CommonMark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept Taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creative-commons-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creative Commons License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directed-acyclic-graph-dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directed Acyclic Graph (DAG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DocBook
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#front-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Front Matter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gml-generalized-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GML (Generalized Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hook-build-lifecycle-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook (Build Lifecycle Hook)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#html-hypertext-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTML (HyperText Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iframe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incremental-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental Build
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jinja-minijinja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jinja / MiniJinja
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markup Language
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Material for MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ontology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ontology
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-graph-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Graph Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p5js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p5.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Poetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyo3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyO3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyproject.toml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#race-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Race Condition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rolldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rolldown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rspack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rspack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUNOFF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sgml-standard-generalized-markup-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SGML (Standard Generalized Markup Language)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-source-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Source Publishing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-threaded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Threaded
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software Fork
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-site-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Site Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supply-chain-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supply Chain Risk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#symlink-symbolic-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symlink (Symbolic Link)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TeX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        troff
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vertices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visjs-vis-network-vis-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vis.js (vis-network / vis-timeline)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watch-list-file-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Watch List (File Watcher)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zensical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zensical
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zrx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZRX
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/dmccreary/zensical-test/blob/main/docs/glossary.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+<h1 id="glossary-of-terms">Glossary of Terms<a class="headerlink" href="#glossary-of-terms" title="Permanent link">¶</a></h1>
+<h4 id="admonition">Admonition<a class="headerlink" href="#admonition" title="Permanent link">¶</a></h4>
+<p>A boxed, highlighted note in a page's text — like a "Note," "Warning," or "Tip" box — created in Markdown with a <code>!!!</code> marker followed by an indented block of text.</p>
+<p>Used throughout this book's migration guide and authoring rules to call out important information.</p>
+<p><strong>Example:</strong> Typing <code>!!! note "Watch Out"</code> followed by an indented paragraph creates a colored box with that title and text.</p>
+<p>See also: Markdown, Material for MkDocs</p>
+<h4 id="agentsmd">AGENTS.md<a class="headerlink" href="#agentsmd" title="Permanent link">¶</a></h4>
+<p>A plain-text file placed in a software project that holds instructions for how an AI coding assistant should work on that project, written so several different assistants can all read the same file.</p>
+<p>This book's own project keeps its rules in one AGENTS.md file so every coding assistant follows identical instructions instead of separate, possibly conflicting, copies.</p>
+<p><strong>Example:</strong> A rule such as "always use built-in dropdown menus, never draw your own" can be written once in AGENTS.md and followed by every assistant that opens the project.</p>
+<p>See also: CLAUDE.md, Symlink (Symbolic Link)</p>
+<h4 id="biome-oxlint-and-oxfmt">Biome, oxlint, and oxfmt<a class="headerlink" href="#biome-oxlint-and-oxfmt" title="Permanent link">¶</a></h4>
+<p>A set of tools, built with the Rust programming language, that check web-page code for style mistakes and automatically reformat it, offered as faster replacements for two older, widely used tools called ESLint and Prettier.</p>
+<p>This book cites them as an example of the broader trend — Rust-based tools replacing older ones for speed — that this book's own subject, Zensical replacing MkDocs, belongs to.</p>
+<p><strong>Example:</strong> A team could swap ESLint and Prettier for Biome and get the same style-checking and reformatting done in a fraction of the time.</p>
+<p>See also: Rust, Linter</p>
+<h4 id="blooms-taxonomy">Bloom's Taxonomy<a class="headerlink" href="#blooms-taxonomy" title="Permanent link">¶</a></h4>
+<p>A framework that ranks six levels of learning ability, running from simply remembering facts up through understanding, applying, analyzing, evaluating, and finally creating something new.</p>
+<p>This book's course-description page uses Bloom's Taxonomy as a template for stating what a reader should be able to do after finishing the book, though that page is currently still blank.</p>
+<h4 id="build-artifact">Build Artifact<a class="headerlink" href="#build-artifact" title="Permanent link">¶</a></h4>
+<p>A finished output file produced by a build process, such as a completed web page, as distinct from the original source file it was generated from.</p>
+<p><strong>Example:</strong> A <code>site/</code> folder full of finished HTML pages is a set of build artifacts produced from a project's Markdown source files.</p>
+<p>See also: Build Pipeline, Static Site Generator</p>
+<h4 id="build-pipeline">Build Pipeline<a class="headerlink" href="#build-pipeline" title="Permanent link">¶</a></h4>
+<p>The ordered series of steps — such as reading source files, turning them into pages, building the navigation menu, and packaging the result — that a program follows to turn raw source content into a finished, publishable website.</p>
+<p>This book walks through an example pipeline of 8 to 11 steps repeatedly, to compare running those steps one after another with running several of them at the same time.</p>
+<p><strong>Example:</strong> A simple pipeline might read Markdown files, convert them to HTML, add the navigation menu, and copy the result into a <code>site/</code> folder.</p>
+<p>See also: Scheduler, Static Site Generator</p>
+<h4 id="bundler-javascript">Bundler (JavaScript)<a class="headerlink" href="#bundler-javascript" title="Permanent link">¶</a></h4>
+<p>A tool that gathers many separate pieces of a website's interactive code into a smaller number of files that a web browser can load efficiently.</p>
+<p>This book mentions bundlers as background for why several newer, Rust-based bundlers are replacing older ones written in JavaScript itself.</p>
+<p><strong>Example:</strong> Turbopack, Rolldown, and Rspack are newer, Rust-based bundlers replacing older JavaScript bundlers such as Webpack.</p>
+<p>See also: Rolldown, Rspack, Rust</p>
+<h4 id="chartjs">Chart.js<a class="headerlink" href="#chartjs" title="Permanent link">¶</a></h4>
+<p>A code library that draws charts and graphs, such as bar charts or line graphs, directly inside a web page.</p>
+<p>Listed in this book as one of the tools its interactive MicroSims can be built with.</p>
+<p><strong>Example:</strong> A MicroSim could use Chart.js to plot a line graph of a value changing over time as a reader adjusts a slider.</p>
+<p>See also: MicroSim, p5.js, vis.js (vis-network / vis-timeline)</p>
+<h4 id="cicd-continuous-integration-continuous-deployment">CI/CD (Continuous Integration / Continuous Deployment)<a class="headerlink" href="#cicd-continuous-integration-continuous-deployment" title="Permanent link">¶</a></h4>
+<p>A way of working in which a project's changes are automatically checked and then published every time new source material is saved to the project, instead of a person manually building and publishing it each time.</p>
+<p>This book's own site is built and published this way, using GitHub Actions, whenever a change is pushed to its main copy.</p>
+<p><strong>Example:</strong> A writer saves an edited chapter, and within a few minutes the updated page appears live on the book's website with no further action needed.</p>
+<p>See also: GitHub Actions, Deployment</p>
+<h4 id="claudemd">CLAUDE.md<a class="headerlink" href="#claudemd" title="Permanent link">¶</a></h4>
+<p>A file, read specifically by an AI coding assistant called Claude Code, that holds project instructions for that assistant.</p>
+<p>In this book's own project, CLAUDE.md contains only a single line pointing to AGENTS.md, so Claude Code reads the exact same rules as every other assistant.</p>
+<p><strong>Example:</strong> This book's CLAUDE.md file contains just one line, <code>@AGENTS.md</code>, which tells Claude Code to load its real instructions from that other file.</p>
+<p>See also: AGENTS.md, Symlink (Symbolic Link)</p>
+<h4 id="cli-command-line-interface">CLI (Command-Line Interface)<a class="headerlink" href="#cli-command-line-interface" title="Permanent link">¶</a></h4>
+<p>A way of operating a program by typing written commands rather than by clicking buttons and menus in a graphical window.</p>
+<p>Both site-building tools discussed in this book, MkDocs and Zensical, are mainly operated by typing commands this way.</p>
+<p><strong>Example:</strong> Typing <code>zensical build</code> and pressing Enter tells the program to build the site, with no windows or buttons involved.</p>
+<p>See also: MkDocs, Zensical</p>
+<h4 id="commonmark">CommonMark<a class="headerlink" href="#commonmark" title="Permanent link">¶</a></h4>
+<p>A precisely written, standardized description of how Markdown formatting should work, created to fix years of earlier Markdown tools that each interpreted the same formatting slightly differently.</p>
+<p>See also: Markdown</p>
+<h4 id="concept-taxonomy">Concept Taxonomy<a class="headerlink" href="#concept-taxonomy" title="Permanent link">¶</a></h4>
+<p>A grouping of a course's individual ideas into a small number of broad categories, typically between 8 and 12, used to organize the material at a higher level than the full concept list.</p>
+<p>Used in this book's learning-graph scaffolding to organize concepts before they are fully written out.</p>
+<p>See also: Learning Graph, Directed Acyclic Graph (DAG)</p>
+<h4 id="creative-commons-license">Creative Commons License<a class="headerlink" href="#creative-commons-license" title="Permanent link">¶</a></h4>
+<p>A standardized, publicly available license that lets a creator clearly state what others are and are not allowed to do with their work, without writing custom legal terms from scratch.</p>
+<p>This book is published under one specific version of this license, called CC BY-NC-SA 4.0, which requires giving credit, forbids commercial use, and requires sharing any adapted version under the same terms.</p>
+<p><strong>Example:</strong> CC BY-NC-SA 4.0 means a reader may copy and adapt this book's content as long as they credit the author, don't sell it, and share their version under the same license.</p>
+<h4 id="dependency-graph">Dependency Graph<a class="headerlink" href="#dependency-graph" title="Permanent link">¶</a></h4>
+<p>An explicit map of which tasks need which other tasks' results finished first, before those tasks themselves can begin.</p>
+<p>This is the structure that Zensical's ZRX engine builds and then schedules work from, a capability MkDocs' older plugin system never had.</p>
+<p><strong>Example:</strong> If building the navigation menu requires every page to already be converted to HTML, the dependency graph records that page conversion must finish first.</p>
+<p>See also: Directed Acyclic Graph (DAG), Scheduler, ZRX</p>
+<h4 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h4>
+<p>The act of publishing a finished, built website to the place where readers can actually visit and read it.</p>
+<p>This book is deployed to GitHub Pages through an automated GitHub Actions workflow, rather than through the older manual command that MkDocs used, which Zensical has no equivalent for.</p>
+<p><strong>Example:</strong> After a chapter is finished, deployment copies the built pages to GitHub Pages so they appear at the book's public web address.</p>
+<p>See also: GitHub Pages, GitHub Actions, CI/CD (Continuous Integration / Continuous Deployment)</p>
+<h4 id="differential-build">Differential Build<a class="headerlink" href="#differential-build" title="Permanent link">¶</a></h4>
+<p>A build that tracks precisely which output files are affected by a given change to a source file, and rebuilds only those files instead of reprocessing the whole site.</p>
+<p>This is one of two techniques, alongside running tasks at the same time, that make Zensical's ZRX engine fast.</p>
+<p><strong>Example:</strong> Editing one chapter's text triggers a rebuild of just that chapter's page, not the book's other hundred pages.</p>
+<p>See also: Incremental Build, ZRX</p>
+<h4 id="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)<a class="headerlink" href="#directed-acyclic-graph-dag" title="Permanent link">¶</a></h4>
+<p>A diagram made of one-directional connections between items, with no path that loops back on itself, so nothing ever ends up depending on itself even through a chain of other items.</p>
+<p>This book uses the same underlying structure to describe both its own learning graph, showing which concepts depend on which, and a build system's map of task dependencies.</p>
+<p><strong>Example:</strong> If concept A must be learned before B, and B before C, a DAG allows that chain but forbids C from also being required before A.</p>
+<p>See also: Learning Graph, Dependency Graph</p>
+<h4 id="docbook">DocBook<a class="headerlink" href="#docbook" title="Permanent link">¶</a></h4>
+<p>An early markup format, written in a tag-based style similar to HTML, designed so that a single source document could be automatically turned into several different finished formats.</p>
+<p>Cited in this book's publishing-history timeline as an early example of writing content once and generating many outputs from it.</p>
+<p>See also: Single-Source Publishing, Markup Language</p>
+<h4 id="front-matter">Front Matter<a class="headerlink" href="#front-matter" title="Permanent link">¶</a></h4>
+<p>A short block of descriptive information, such as a page's title, description, and preview image, written in YAML at the very top of a Markdown file before its main content begins.</p>
+<p>Nearly every page in this book uses front matter to set its page title and the image shown when the page is shared on social media.</p>
+<p><strong>Example:</strong> A page might begin with a block listing <code>title: About</code> before the actual page content follows below it.</p>
+<p>See also: Markdown, YAML, Open Graph Protocol</p>
+<h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">¶</a></h4>
+<p>A tool that keeps a complete history of changes made to a project's files over time, letting multiple people, or a person and an AI assistant, work on the same files without overwriting each other's work.</p>
+<p>The entire source of this book is tracked in Git.</p>
+<p><strong>Example:</strong> Each time a chapter is edited and saved to Git, that exact change is recorded and can be looked back at or undone later.</p>
+<p>See also: Repository, GitHub Pages</p>
+<h4 id="github-actions">GitHub Actions<a class="headerlink" href="#github-actions" title="Permanent link">¶</a></h4>
+<p>An automation service, built into GitHub, that runs a defined series of steps, such as building and checking a project, whenever something happens, like new material being saved to the project.</p>
+<p>This book's site is built and published by a GitHub Actions workflow every time a change is pushed to its main copy.</p>
+<p><strong>Example:</strong> A GitHub Actions workflow can be set to automatically run <code>zensical build</code> and publish the result every time a chapter is updated.</p>
+<p>See also: CI/CD (Continuous Integration / Continuous Deployment), GitHub Pages</p>
+<h4 id="github-pages">GitHub Pages<a class="headerlink" href="#github-pages" title="Permanent link">¶</a></h4>
+<p>A free service, built into GitHub, that hosts a finished website and makes it available at a public web address.</p>
+<p>This book's finished site is published using GitHub Pages.</p>
+<p><strong>Example:</strong> This book's site is published at the address https://dmccreary.github.io/zensical-test/ using GitHub Pages.</p>
+<p>See also: GitHub Actions, Deployment</p>
+<h4 id="gml-generalized-markup-language">GML (Generalized Markup Language)<a class="headerlink" href="#gml-generalized-markup-language" title="Permanent link">¶</a></h4>
+<p>An early markup language created by IBM in the 1960s, considered a historical ancestor of several later tag-based formats used to structure text.</p>
+<p>Appears as an early entry in this book's publishing-tools history timeline.</p>
+<p>See also: SGML (Standard Generalized Markup Language), Markup Language</p>
+<h4 id="hook-build-lifecycle-hook">Hook (Build Lifecycle Hook)<a class="headerlink" href="#hook-build-lifecycle-hook" title="Permanent link">¶</a></h4>
+<p>A specific, named point during a build process — such as "right after settings are loaded" or "right after the final page is written" — where an add-on piece of code is allowed to run.</p>
+<p>This is the mechanism MkDocs' <code>hooks:</code> setting relied on; Zensical does not support it, so this book uses a different technique, a theme override, to get the same result.</p>
+<p><strong>Example:</strong> MkDocs' <code>hooks:</code> setting could run custom code right after a page finished building, to add extra tags to it — a step Zensical instead handles with a theme override.</p>
+<p>See also: Plugin, Theme Override, Module System</p>
+<h4 id="html-hypertext-markup-language">HTML (HyperText Markup Language)<a class="headerlink" href="#html-hypertext-markup-language" title="Permanent link">¶</a></h4>
+<p>The tag-based language that web browsers read in order to display a page's text, images, and layout.</p>
+<p>HTML is both an entry in this book's publishing-tools history timeline and the actual output format that both MkDocs and Zensical produce.</p>
+<p><strong>Example:</strong> A Markdown heading written as <code># Chapter One</code> is converted into the HTML tag <code>&lt;h1&gt;Chapter One&lt;/h1&gt;</code> before a browser displays it.</p>
+<p>See also: Markup Language, Static Site Generator</p>
+<h4 id="iframe">iframe<a class="headerlink" href="#iframe" title="Permanent link">¶</a></h4>
+<p>A piece of HTML that embeds one entire web page inside another web page, showing it in its own rectangular frame.</p>
+<p>This book uses an iframe on every lesson page to embed that lesson's interactive MicroSim.</p>
+<p><strong>Example:</strong> A chapter page can include an iframe pointing at a MicroSim's own file, so the simulation appears directly inside the lesson without leaving the page.</p>
+<p>See also: MicroSim, HTML (HyperText Markup Language)</p>
+<h4 id="incremental-build">Incremental Build<a class="headerlink" href="#incremental-build" title="Permanent link">¶</a></h4>
+<p>A build that, when one source file changes, still has to work through an entire chain of everything that depends on it, even when only a small part of the final output actually needs to change.</p>
+<p>This book contrasts incremental builds with the more precisely targeted "differential build" approach.</p>
+<p><strong>Example:</strong> Changing one word in a shared navigation file might force an incremental build to reprocess every page that includes that navigation, even though only the menu text actually changed.</p>
+<p>See also: Differential Build, Build Pipeline</p>
+<h4 id="jinja-minijinja">Jinja / MiniJinja<a class="headerlink" href="#jinja-minijinja" title="Permanent link">¶</a></h4>
+<p>Two closely related templating languages used to write the reusable page-layout files that control how a site's theme looks; MkDocs uses Jinja and Zensical uses MiniJinja, and both read the same kind of override file.</p>
+<p>Because the two languages are compatible in this way, this book's fix for restoring social-media preview tags works on both MkDocs and Zensical.</p>
+<p><strong>Example:</strong> A template file written in Jinja to insert a page's title into the page header can be read, with only small changes, by Zensical's MiniJinja engine too.</p>
+<p>See also: Theme Override, MkDocs, Zensical</p>
+<h4 id="knowledge-graph">Knowledge Graph<a class="headerlink" href="#knowledge-graph" title="Permanent link">¶</a></h4>
+<p>A network diagram that represents real-world things and the relationships that connect them to each other.</p>
+<p>Mentioned in this book's author biography as something used at a very large scale in a past healthcare project.</p>
+<p>See also: Vertices, Learning Graph</p>
+<h4 id="learning-graph">Learning Graph<a class="headerlink" href="#learning-graph" title="Permanent link">¶</a></h4>
+<p>A one-directional map, with no loops, of which concepts in a course must be understood before which other concepts, so a reader or an automated system can find a valid order to learn them in.</p>
+<p>This book has a learning-graph scaffold set up, but it has not yet been filled in with actual concepts.</p>
+<p><strong>Example:</strong> A learning graph might show that "Markdown" must be understood before "Front Matter," since front matter is written inside a Markdown file.</p>
+<p>See also: Directed Acyclic Graph (DAG), Concept Taxonomy</p>
+<h4 id="linter">Linter<a class="headerlink" href="#linter" title="Permanent link">¶</a></h4>
+<p>A tool that automatically scans a project's source code for style problems or likely mistakes without actually running that code.</p>
+<p>This book mentions linters as background for why newer, faster tools such as Ruff and Biome are being adopted in place of older ones.</p>
+<p><strong>Example:</strong> A linter might flag a line of code that is too long or a variable that is never used, without ever executing the program.</p>
+<p>See also: Type Checker</p>
+<h4 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Permanent link">¶</a></h4>
+<p>A simple, plain-text way of marking up formatting, such as headings, lists, bold text, and links, using a few easy-to-type symbols, which is later converted into HTML for display.</p>
+<p>This entire book is written in Markdown.</p>
+<p><strong>Example:</strong> Typing <code>**important**</code> in Markdown displays as bold text reading important once the page is built.</p>
+<p>See also: CommonMark, HTML (HyperText Markup Language), Front Matter</p>
+<h4 id="markup-language">Markup Language<a class="headerlink" href="#markup-language" title="Permanent link">¶</a></h4>
+<p>Any system for adding tags or symbols to plain text to describe its structure or formatting, separately from the actual words of the content itself.</p>
+<p>HTML, XML, SGML, and GML are all examples covered in this book's publishing-history timeline.</p>
+<p>See also: HTML (HyperText Markup Language), SGML (Standard Generalized Markup Language), GML (Generalized Markup Language)</p>
+<h4 id="material-for-mkdocs">Material for MkDocs<a class="headerlink" href="#material-for-mkdocs" title="Permanent link">¶</a></h4>
+<p>A visual theme layered on top of MkDocs that supplies a finished look, including a navigation sidebar, a search box, and a color scheme.</p>
+<p>This theme supplies most of this book's visual design and navigation.</p>
+<p><strong>Example:</strong> The sidebar of chapter links and the search box seen on this book's site both come from Material for MkDocs, not from MkDocs itself.</p>
+<p>See also: MkDocs, Theme Override</p>
+<h4 id="microsim">MicroSim<a class="headerlink" href="#microsim" title="Permanent link">¶</a></h4>
+<p>This book's own term for a small, focused, interactive simulation built for teaching a single idea, embedded directly into a lesson page.</p>
+<p>This book's MicroSims are built with tools such as p5.js, Chart.js, or vis.js.</p>
+<p><strong>Example:</strong> A MicroSim showing a bouncing ball lets a reader change its speed with a slider and immediately see the effect, rather than just reading a description of motion.</p>
+<p>See also: p5.js, Chart.js, iframe</p>
+<h4 id="mkdocs">MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">¶</a></h4>
+<p>The original site-building tool, written in the Python programming language, that this book's own project was first built with, before the project began switching over to Zensical.</p>
+<p>See also: Zensical, Static Site Generator, Material for MkDocs</p>
+<h4 id="module-system">Module System<a class="headerlink" href="#module-system" title="Permanent link">¶</a></h4>
+<p>Zensical's approach to extending its own behavior, in which each piece of the build process explicitly states what information it needs and what it produces, instead of running open-ended add-on code that could affect any other part of the build.</p>
+<p>This replaces the plugin-and-hook approach that MkDocs used.</p>
+<p><strong>Example:</strong> Instead of a plugin quietly changing page titles anywhere in the build, a module in Zensical's system must declare upfront that it reads page content and produces a title.</p>
+<p>See also: Plugin, Hook (Build Lifecycle Hook), Zensical</p>
+<h4 id="ontology">Ontology<a class="headerlink" href="#ontology" title="Permanent link">¶</a></h4>
+<p>A carefully structured, formal description of the concepts within a particular subject area and how those concepts relate to one another, more rigorously organized than a general knowledge graph.</p>
+<p>Mentioned in this book's author biography.</p>
+<p>See also: Knowledge Graph</p>
+<h4 id="open-graph-protocol">Open Graph Protocol<a class="headerlink" href="#open-graph-protocol" title="Permanent link">¶</a></h4>
+<p>A shared web standard that lets a page specify, through special tags, exactly which image and text should appear when a link to it is shared on social media.</p>
+<p>This book has a custom mechanism for setting these tags on a per-page basis.</p>
+<p><strong>Example:</strong> An <code>og:image</code> tag on a chapter page tells services like a chat app or social network which picture to show in the link preview when someone shares that chapter.</p>
+<p>See also: Front Matter, Theme Override</p>
+<h4 id="p5js">p5.js<a class="headerlink" href="#p5js" title="Permanent link">¶</a></h4>
+<p>A code library for creating drawings, animations, and interactive graphics in a web page, popular for teaching and creative projects.</p>
+<p>This book uses p5.js to build physics-style MicroSims, such as its bouncing-ball example.</p>
+<p><strong>Example:</strong> A p5.js sketch can draw a circle that falls and bounces on the screen, redrawing it many times a second to create the animation.</p>
+<p>See also: MicroSim, Chart.js</p>
+<h4 id="pip">pip<a class="headerlink" href="#pip" title="Permanent link">¶</a></h4>
+<p>Python's traditional, built-in tool for downloading and installing add-on packages that a Python project needs.</p>
+<p>This book's project suggests preferring a newer, faster tool called uv over pip where practical.</p>
+<p><strong>Example:</strong> Running <code>pip install zensical</code> downloads and installs the Zensical program so it can be used.</p>
+<p>See also: uv, Poetry</p>
+<h4 id="plugin">Plugin<a class="headerlink" href="#plugin" title="Permanent link">¶</a></h4>
+<p>A separate, add-on piece of software that adds new capability to a larger host program.</p>
+<p>Nearly all of MkDocs' features, such as search and diagrams, are built as plugins rather than being part of its core.</p>
+<p><strong>Example:</strong> A search plugin adds a search box to an MkDocs site; without that plugin installed, the site would have no search feature at all.</p>
+<p>See also: Hook (Build Lifecycle Hook), Module System</p>
+<h4 id="poetry">Poetry<a class="headerlink" href="#poetry" title="Permanent link">¶</a></h4>
+<p>A tool for managing a Python project's add-on packages and its isolated working environment.</p>
+<p>Named in this book as one of the older tools that the newer, faster uv tool can often replace.</p>
+<p>See also: pip, uv</p>
+<h4 id="pyo3">PyO3<a class="headerlink" href="#pyo3" title="Permanent link">¶</a></h4>
+<p>A code library that lets programs written in the Rust language be called directly from Python code.</p>
+<p>This book mentions PyO3 as the planned way that developers who do not know Rust will eventually be able to extend Zensical, even though its core is written in Rust.</p>
+<p>See also: Rust, Zensical</p>
+<h4 id="pyprojecttoml">pyproject.toml<a class="headerlink" href="#pyprojecttoml" title="Permanent link">¶</a></h4>
+<p>A standardized configuration file that modern Python projects use to list their required add-on packages and settings in one place.</p>
+<p>This file is increasingly replacing an older, simpler file called requirements.txt.</p>
+<p><strong>Example:</strong> A <code>pyproject.toml</code> file might list <code>zensical</code> as a required package, so anyone setting up the project knows to install it.</p>
+<p>See also: pip, uv</p>
+<h4 id="race-condition">Race Condition<a class="headerlink" href="#race-condition" title="Permanent link">¶</a></h4>
+<p>A software bug in which the outcome depends on the unpredictable order or timing of two things happening at nearly the same moment.</p>
+<p>This book's own deployment hit a race condition when its site was pushed live before GitHub Pages had finished being turned on for the project.</p>
+<p><strong>Example:</strong> If a publishing step runs before a hosting service has finished setting up, the publish can silently fail even though the same steps would work fine if run a minute later.</p>
+<p>See also: Deployment, GitHub Pages</p>
+<h4 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">¶</a></h4>
+<p>A directory of files, together with the complete history of changes made to them, tracked by a tool such as Git and often stored on a hosting service such as GitHub.</p>
+<p>This book's entire project is one repository.</p>
+<p><strong>Example:</strong> The zensical-test repository on GitHub holds every chapter file, image, and configuration file for this book, along with their full edit history.</p>
+<p>See also: Git, GitHub Pages</p>
+<h4 id="rolldown">Rolldown<a class="headerlink" href="#rolldown" title="Permanent link">¶</a></h4>
+<p>A bundler, built with the Rust programming language, that replaced two older JavaScript-based tools, esbuild and Rollup, inside a widely used build tool called Vite.</p>
+<p>Cited in this book as another example of the trend toward rewriting JavaScript tools in Rust for speed.</p>
+<p>See also: Bundler (JavaScript), Rust, Rspack</p>
+<h4 id="rspack">Rspack<a class="headerlink" href="#rspack" title="Permanent link">¶</a></h4>
+<p>A bundler, built with the Rust programming language, designed to be swapped in as a direct, compatible replacement for an older, widely used JavaScript bundler called Webpack.</p>
+<p>See also: Bundler (JavaScript), Rust, Rolldown</p>
+<h4 id="runoff">RUNOFF<a class="headerlink" href="#runoff" title="Permanent link">¶</a></h4>
+<p>One of the earliest computer programs for formatting documents, created in the 1960s.</p>
+<p>This is the first entry in this book's history-of-publishing-tools timeline.</p>
+<p>See also: troff, TeX</p>
+<h4 id="rust">Rust<a class="headerlink" href="#rust" title="Permanent link">¶</a></h4>
+<p>A programming language designed to run very fast while also catching a category of common memory-related bugs before a program even runs.</p>
+<p>Zensical's build engine, along with several other tools mentioned in this book such as uv and Ruff, is written in Rust, which this book credits for their large speed gains over older tools.</p>
+<p><strong>Example:</strong> Rewriting a slow Python tool in Rust can make it run many times faster on the exact same task.</p>
+<p>See also: Zensical, ZRX, uv</p>
+<h4 id="scheduler">Scheduler<a class="headerlink" href="#scheduler" title="Permanent link">¶</a></h4>
+<p>The part of a build system that decides which tasks run, in what order, and whether any of them can run at the same time as each other.</p>
+<p>This book's central technical comparison is between Zensical's scheduler, which uses a dependency graph to run tasks in parallel, and MkDocs' fixed, one-task-at-a-time order.</p>
+<p><strong>Example:</strong> A scheduler that sees two unrelated pages both need converting to HTML can hand each one to a different processor core to work on at once.</p>
+<p>See also: Dependency Graph, Build Pipeline</p>
+<h4 id="semantic-search">Semantic Search<a class="headerlink" href="#semantic-search" title="Permanent link">¶</a></h4>
+<p>A style of search that matches results to the underlying meaning of a question rather than only to its exact wording.</p>
+<p>Mentioned in this book's author biography.</p>
+<p><strong>Example:</strong> Searching for "how to fix a broken link" could return a page titled "Repairing Navigation Errors," even though it shares almost none of the same words.</p>
+<p>See also: Knowledge Graph</p>
+<h4 id="sgml-standard-generalized-markup-language">SGML (Standard Generalized Markup Language)<a class="headerlink" href="#sgml-standard-generalized-markup-language" title="Permanent link">¶</a></h4>
+<p>An early standard for structuring text with tags, from which both HTML and XML were later derived.</p>
+<p>Appears in this book's publishing-tools history timeline.</p>
+<p>See also: HTML (HyperText Markup Language), Markup Language, GML (Generalized Markup Language)</p>
+<h4 id="single-source-publishing">Single-Source Publishing<a class="headerlink" href="#single-source-publishing" title="Permanent link">¶</a></h4>
+<p>The practice of writing a piece of content exactly once, in one plain source format, and then automatically generating every finished version a reader might need, such as a web page, a PDF, or a slide deck, from that same source.</p>
+<p><strong>Example:</strong> A single Markdown chapter file could be automatically turned into both this book's web page and a printable PDF, without anyone retyping the content twice.</p>
+<p>See also: DocBook, Markdown</p>
+<h4 id="single-threaded">Single-Threaded<a class="headerlink" href="#single-threaded" title="Permanent link">¶</a></h4>
+<p>A description of software that can only carry out one sequence of instructions at a time, meaning it cannot make use of more than one processor core even when several are available on a computer.</p>
+<p>This book describes MkDocs' plugin system as single-threaded by design, which is part of why it cannot run build steps at the same time the way Zensical can.</p>
+<p>See also: Scheduler, ZRX</p>
+<h4 id="software-fork">Software Fork<a class="headerlink" href="#software-fork" title="Permanent link">¶</a></h4>
+<p>Taking a complete copy of an existing project's source code and continuing to develop that copy separately, under its own, independent management.</p>
+<p>This book describes forking MkDocs as an option the Zensical team considered and rejected, choosing instead to build an entirely new tool.</p>
+<p>See also: MkDocs, Zensical</p>
+<h4 id="static-site-generator">Static Site Generator<a class="headerlink" href="#static-site-generator" title="Permanent link">¶</a></h4>
+<p>A tool that converts source files, such as Markdown, into a complete set of finished web pages ahead of time, rather than building each page freshly whenever a visitor requests it.</p>
+<p>Both MkDocs and Zensical, the two tools this book compares, belong to this category of tool.</p>
+<p><strong>Example:</strong> A static site generator turns a folder of Markdown chapter files into a finished <code>site/</code> folder of HTML pages that can be uploaded anywhere and viewed instantly.</p>
+<p>See also: MkDocs, Zensical, Build Artifact</p>
+<h4 id="strict-mode">Strict Mode<a class="headerlink" href="#strict-mode" title="Permanent link">¶</a></h4>
+<p>A build option that turns problems normally reported only as warnings, such as a broken internal link, into hard errors that stop the build until they are fixed.</p>
+<p>This book treats the command <code>mkdocs build --strict</code> as its authoritative check that a page is correctly built.</p>
+<p><strong>Example:</strong> A page linking to a chapter that does not exist only prints a warning in normal mode, but stops the build entirely in strict mode.</p>
+<p>See also: Build Pipeline</p>
+<h4 id="supply-chain-risk">Supply Chain Risk<a class="headerlink" href="#supply-chain-risk" title="Permanent link">¶</a></h4>
+<p>The danger that a project depends on outside software or infrastructure which could later become unmaintained, broken, or insecure.</p>
+<p>This book describes MkDocs having gone unmaintained since around August 2024 as exactly this kind of risk for every project still built on it.</p>
+<p>See also: MkDocs, Software Fork</p>
+<h4 id="symlink-symbolic-link">Symlink (Symbolic Link)<a class="headerlink" href="#symlink-symbolic-link" title="Permanent link">¶</a></h4>
+<p>A special file that points to another file or folder stored elsewhere, rather than containing its own separate copy of that file's data.</p>
+<p>This book proposes using a symlink so that one shared instructions file can be used by more than one tool at the same time, without keeping duplicate copies in sync.</p>
+<p><strong>Example:</strong> A symlink named CLAUDE.md could point at the real AGENTS.md file, so editing AGENTS.md automatically updates what CLAUDE.md appears to contain too.</p>
+<p>See also: AGENTS.md, CLAUDE.md</p>
+<h4 id="tex">TeX<a class="headerlink" href="#tex" title="Permanent link">¶</a></h4>
+<p>A computer typesetting system, created by Donald Knuth, especially well known for accurately laying out complex text such as mathematical formulas.</p>
+<p>An entry in this book's publishing-tools history timeline.</p>
+<p><strong>Example:</strong> TeX is often used to typeset textbooks and papers full of mathematical equations that would be hard to lay out correctly by hand.</p>
+<p>See also: RUNOFF, troff</p>
+<h4 id="theme-override">Theme Override<a class="headerlink" href="#theme-override" title="Permanent link">¶</a></h4>
+<p>A small template file that extends a site theme's existing layout to add or change one specific piece of output, without modifying the theme's own files directly.</p>
+<p>This book uses a theme override to restore social-media preview tags on Zensical, since Zensical does not support the older hook mechanism that used to produce them.</p>
+<p><strong>Example:</strong> This book's own <code>overrides/main.html</code> file adds custom preview-image tags to every page without editing Material for MkDocs' original theme files.</p>
+<p>See also: Hook (Build Lifecycle Hook), Material for MkDocs, Open Graph Protocol</p>
+<h4 id="toml">TOML<a class="headerlink" href="#toml" title="Permanent link">¶</a></h4>
+<p>A plain-text format for storing configuration data as named sections of <code>key = "value"</code> pairs, designed to be easy for both people and programs to read reliably.</p>
+<p>Python projects increasingly use a <code>pyproject.toml</code> file, written in TOML, to declare their dependencies and settings instead of older formats.</p>
+<p><strong>Example:</strong> A <code>pyproject.toml</code> file might contain a <code>[project]</code> section with a line like <code>name = "zensical-test"</code>.</p>
+<p>See also: pyproject.toml, YAML</p>
+<h4 id="troff">troff<a class="headerlink" href="#troff" title="Permanent link">¶</a></h4>
+<p>A document-formatting tool for Unix computers, descended from the earlier RUNOFF program.</p>
+<p>An entry in this book's publishing-tools history timeline.</p>
+<p>See also: RUNOFF, TeX</p>
+<h4 id="ty">ty<a class="headerlink" href="#ty" title="Permanent link">¶</a></h4>
+<p>A newer, still-developing tool, built with the Rust programming language, that checks whether a Python program uses its data consistently, positioned as a possible future replacement for two older tools, mypy and Pyright.</p>
+<p>See also: Type Checker, Rust</p>
+<h4 id="type-checker">Type Checker<a class="headerlink" href="#type-checker" title="Permanent link">¶</a></h4>
+<p>A tool that checks whether a program's data is being used consistently, catching certain kinds of mistakes without actually running the program.</p>
+<p>Mentioned as background for why the older tools mypy and Pyright, and the newer tool ty, are discussed together.</p>
+<p><strong>Example:</strong> A type checker could catch, before the program ever runs, an attempt to add a number to a piece of text by mistake.</p>
+<p>See also: ty, Linter</p>
+<h4 id="uv">uv<a class="headerlink" href="#uv" title="Permanent link">¶</a></h4>
+<p>A much faster tool, built with the Rust programming language, that can stand in for several older Python tools at once, including pip and others used to install packages and manage isolated project environments.</p>
+<p>This book's project proposes preferring uv over the older pip tool where practical.</p>
+<p><strong>Example:</strong> Running <code>uv pip install zensical</code> can install the same package as plain <code>pip install zensical</code>, but noticeably faster.</p>
+<p>See also: pip, Poetry, Rust</p>
+<h4 id="vertices">Vertices<a class="headerlink" href="#vertices" title="Permanent link">¶</a></h4>
+<p>The individual points, also called nodes, that make up a graph, which are linked to each other by connecting lines called edges.</p>
+<p>This book's author biography mentions working with a graph containing 25 billion vertices.</p>
+<p><strong>Example:</strong> In a graph of a family tree, each person is a vertex, and each parent-child relationship is an edge connecting two vertices.</p>
+<p>See also: Knowledge Graph, Directed Acyclic Graph (DAG)</p>
+<h4 id="visjs-vis-network-vis-timeline">vis.js (vis-network / vis-timeline)<a class="headerlink" href="#visjs-vis-network-vis-timeline" title="Permanent link">¶</a></h4>
+<p>A set of code libraries for drawing interactive network diagrams and timelines in a web page.</p>
+<p>This book uses vis.js to build its history-of-publishing-tools timeline MicroSim.</p>
+<p><strong>Example:</strong> A vis.js timeline could plot RUNOFF, troff, TeX, SGML, and HTML along a single horizontal line in the order they were invented.</p>
+<p>See also: MicroSim, Chart.js</p>
+<h4 id="watch-list-file-watcher">Watch List (File Watcher)<a class="headerlink" href="#watch-list-file-watcher" title="Permanent link">¶</a></h4>
+<p>A setting in a site's configuration file that tells a running preview server which files or folders to keep an eye on, so it can automatically reload the page when one of them changes.</p>
+<p>This book's project ran into a serious Zensical bug caused by this setting accidentally referencing the configuration file's own name.</p>
+<p><strong>Example:</strong> If the watch list accidentally includes <code>mkdocs.yml</code>, the config file's own name, it can cause the server to behave incorrectly and stop producing any pages at all.</p>
+<p>See also: YAML</p>
+<h4 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">¶</a></h4>
+<p>A plain-text format for storing structured data, designed to be easy for a person to read, using indentation instead of symbols like brackets to show structure.</p>
+<p>This book's entire site configuration file, <code>mkdocs.yml</code> (the <code>.yml</code> extension is short for YAML), and every page's front matter are written in YAML.</p>
+<p><strong>Example:</strong> A line reading <code>title: About</code> inside a YAML file simply pairs the label "title" with the value "About."</p>
+<p>See also: Front Matter</p>
+<h4 id="zensical">Zensical<a class="headerlink" href="#zensical" title="Permanent link">¶</a></h4>
+<p>A newer, Rust-based site-building tool, created by the same team behind Material for MkDocs, built to be a faster successor to MkDocs.</p>
+<p>Migrating this book's own site from MkDocs to Zensical is the entire subject of this book.</p>
+<p><strong>Example:</strong> Running <code>zensical build</code> reads this book's Markdown files and configuration and produces the same kind of finished website that <code>mkdocs build</code> would, generally much faster.</p>
+<p>See also: MkDocs, ZRX, Rust</p>
+<h4 id="zrx">ZRX<a class="headerlink" href="#zrx" title="Permanent link">¶</a></h4>
+<p>Zensical's underlying build engine, which works out an explicit map of every build task's dependencies and then runs as many of those tasks as possible at the same time, across a computer's available processor cores.</p>
+<p>This replaces the fixed, one-task-at-a-time order that MkDocs always used.</p>
+<p><strong>Example:</strong> If ten chapter pages have no dependency on one another, ZRX can build all ten of them simultaneously instead of one after another.</p>
+<p>See also: Zensical, Dependency Graph, Scheduler</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../references/" class="md-footer__link md-footer__link--prev" aria-label="Previous: References">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                References
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../feature-checklist/" class="md-footer__link md-footer__link--next" aria-label="Next: Feature Checklist">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Feature Checklist
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

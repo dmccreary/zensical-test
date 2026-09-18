@@ -1,0 +1,1392 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A detailed guide to migrating an mkdocs-material book to the new Zensical system">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/zensical-test/migration-steps/">
+      
+      
+        <link rel="prev" href="../why-zensical/">
+      
+      
+        <link rel="next" href="../background-on-web-publishing-tools/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Migration Steps - Migrating from MkDocs to Zensical</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-6NE4PMF8NV"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-6NE4PMF8NV",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-6NE4PMF8NV",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+  
+
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#migration-steps-mkdocs-to-zensical" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Migrating from MkDocs to Zensical" class="md-header__button md-logo" aria-label="Migrating from MkDocs to Zensical" data-md-component="logo">
+      
+  <img src="../img/mascot/welcome.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Migrating from MkDocs to Zensical
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Migration Steps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/zensical-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Migrating from MkDocs to Zensical" class="md-nav__button md-logo" aria-label="Migrating from MkDocs to Zensical" data-md-component="logo">
+      
+  <img src="../img/mascot/welcome.png" alt="logo">
+
+    </a>
+    Migrating from MkDocs to Zensical
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/zensical-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-zensical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Zensical?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Steps
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Steps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-zensical-alongside-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Install Zensical alongside MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-treat-a-silent-empty-site-as-a-failure-not-a-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Treat a silent, empty site/ as a failure, not a pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-check-your-mkdocsyml-against-the-known-compatibility-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Check your mkdocs.yml against the known compatibility gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-watch-for-the-self-referencing-watch-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Watch for the self-referencing watch: bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-verify-output-matches-dont-just-eyeball-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Verify output matches, don't just eyeball it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-replace-hooks-with-a-theme-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Replace hooks: with a theme override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-update-your-deployment-gh-deploy-has-no-equivalent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Update your deployment: gh-deploy has no equivalent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-cut-over-but-keep-mkdocs-build-strict-as-your-safety-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Cut over, but keep mkdocs build --strict as your safety net
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-known-gaps-as-of-zensical-0061" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-reference: known gaps as of Zensical 0.0.61
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-on-web-publishing-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background on Web Publishing Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposed-agents-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proposed AGENTS.md Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../katex-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equation Rendering Test (KaTeX)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-zensical-alongside-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Install Zensical alongside MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-treat-a-silent-empty-site-as-a-failure-not-a-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Treat a silent, empty site/ as a failure, not a pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-check-your-mkdocsyml-against-the-known-compatibility-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Check your mkdocs.yml against the known compatibility gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-watch-for-the-self-referencing-watch-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Watch for the self-referencing watch: bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-verify-output-matches-dont-just-eyeball-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Verify output matches, don't just eyeball it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-replace-hooks-with-a-theme-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Replace hooks: with a theme override
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-update-your-deployment-gh-deploy-has-no-equivalent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Update your deployment: gh-deploy has no equivalent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-cut-over-but-keep-mkdocs-build-strict-as-your-safety-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Cut over, but keep mkdocs build --strict as your safety net
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-known-gaps-as-of-zensical-0061" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick-reference: known gaps as of Zensical 0.0.61
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/dmccreary/zensical-test/blob/main/docs/migration-steps.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+<h1 id="migration-steps-mkdocs-to-zensical">Migration Steps: MkDocs to Zensical<a class="headerlink" href="#migration-steps-mkdocs-to-zensical" title="Permanent link">¶</a></h1>
+<p><a href="../why-zensical/">Why Zensical?</a> makes the case for switching. This page is
+the "how" that page doesn't cover: the concrete, ordered steps this project
+followed to migrate its own <code>mkdocs.yml</code>-driven site, including the gotchas
+that cost real debugging time. Every command and config snippet below was
+run against this repository; the version numbers and gap list are current
+as of <strong>Zensical 0.0.61</strong> — re-check them against your own installed
+version, since Zensical is still under active development.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
+<ul>
+<li>An existing site that builds with <code>mkdocs build</code> today, using MkDocs +
+  Material for MkDocs, driven by a single <code>mkdocs.yml</code>.</li>
+<li>Python 3.x and a way to install packages (<code>pip</code>, or <code>uv</code> — see the
+  tooling note in Step 1).</li>
+<li>Comfort reading a build's console output closely. Most Zensical gaps in
+  this migration showed up as <strong>silence</strong> — an empty <code>site/</code> directory with
+  no error and exit code 0 — rather than a message telling you something
+  was wrong.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">This is not a rewrite</p>
+<p>Zensical reads the same <code>mkdocs.yml</code> every MkDocs project already has.
+Nothing here requires touching your Markdown content, and most of it
+doesn't even require changing your config — you are adding a second
+builder to test <em>against</em> your existing one, not replacing it yet.</p>
+</div>
+<h2 id="step-1-install-zensical-alongside-mkdocs">Step 1 — Install Zensical alongside MkDocs<a class="headerlink" href="#step-1-install-zensical-alongside-mkdocs" title="Permanent link">¶</a></h2>
+<p>Install it into the same environment you already use for
+<code>mkdocs</code>/<code>mkdocs-material</code> — there is no need for a separate one:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>zensical
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># or, preferring the faster Rust-based installer:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>zensical
+</span></code></pre></div>
+<p>Confirm it installed and can at least parse your existing config:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>zensical<span class="w"> </span>build
+</span></code></pre></div>
+<h2 id="step-2-treat-a-silent-empty-site-as-a-failure-not-a-pass">Step 2 — Treat a silent, empty <code>site/</code> as a failure, not a pass<a class="headerlink" href="#step-2-treat-a-silent-empty-site-as-a-failure-not-a-pass" title="Permanent link">¶</a></h2>
+<p>Zensical's build behavior is stricter to read than MkDocs' in one specific
+way: unsupported config keys are silently ignored rather than rejected, and
+at least one known bug (Step 4 below) produces a <strong>clean exit with zero
+output files and no warning at all</strong>. Never trust "the command didn't
+error" — always check that <code>site/</code> actually contains the pages you expect:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>zensical<span class="w"> </span>build<span class="w"> </span>-s<span class="w">          </span><span class="c1"># -s / --strict: still won't catch everything</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>find<span class="w"> </span>site<span class="w"> </span>-name<span class="w"> </span><span class="s1">'*.html'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<p>Compare that count against a known-good <code>mkdocs build --strict</code> run of the
+same project before doing anything else.</p>
+<h2 id="step-3-check-your-mkdocsyml-against-the-known-compatibility-gaps">Step 3 — Check your <code>mkdocs.yml</code> against the known compatibility gaps<a class="headerlink" href="#step-3-check-your-mkdocsyml-against-the-known-compatibility-gaps" title="Permanent link">¶</a></h2>
+<p>Before relying on a Zensical build, scan your config for settings and CLI
+flags Zensical doesn't support yet:</p>
+<p><strong>Unsupported <code>mkdocs.yml</code> settings</strong> (as of 0.0.61): <code>remote_branch</code>,
+<code>remote_name</code>, <code>exclude_docs</code>, <code>draft_docs</code>, <code>not_in_nav</code>, <code>hooks</code>.</p>
+<p><strong>Unsupported CLI flags</strong>: <code>--theme</code>, <code>--use-directory-urls</code>, <code>--site-dir</code>,
+<code>gh-deploy</code>, <code>get-deps</code>.</p>
+<p><strong>Plugins natively supported</strong>: <code>search</code>, <code>glightbox</code>, <code>minify</code>, <code>tags</code>,
+<code>redirects</code>, <code>mkdocstrings</code>, <code>markdown-exec</code>, <code>meta</code>, <code>autorefs</code>,
+<code>awesome-nav</code>, <code>literate-nav</code>, <code>section-index</code>, <code>table-reader</code>.</p>
+<p><strong>Plugins still "in progress"</strong> (no equivalent yet): <code>social</code> (the
+Cairo-based auto-generated social-card <em>images</em> — Step 6 covers the
+per-page <code>og:image</code>/<code>twitter:image</code> <em>tags</em>, which is a separate,
+already-solvable problem) and <code>blog</code>.</p>
+<p>One config addition is worth making regardless of which builder you use
+day to day:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">theme</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">variant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classic</span><span class="w">   </span><span class="c1"># tells Zensical to render the Material-for-MkDocs look</span>
+</span></code></pre></div>
+<p><code>mkdocs-material</code> itself ignores the unknown <code>variant</code> key, so it's safe to
+add to a config both builders read.</p>
+<p>Keys Zensical doesn't support (<code>hooks:</code>, <code>exclude_docs:</code>, etc.) can usually
+stay in the file rather than being deleted — Zensical ignores what it
+doesn't recognize instead of erroring, which keeps the config
+dual-compatible. Just know exactly what silently stops working on the
+Zensical side (see Step 6 for the <code>hooks:</code> case specifically), and say so
+out loud rather than assuming nothing changed.</p>
+<h2 id="step-4-watch-for-the-self-referencing-watch-bug">Step 4 — Watch for the self-referencing <code>watch:</code> bug<a class="headerlink" href="#step-4-watch-for-the-self-referencing-watch-bug" title="Permanent link">¶</a></h2>
+<p>If your <code>mkdocs.yml</code> has a <code>watch:</code> block that includes itself — a common
+MkDocs convention, so <code>mkdocs serve</code> reloads when you edit the config —
+you will hit this:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">watch</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs.yml</span><span class="w">   </span><span class="c1"># &lt;-- this line</span>
+</span></code></pre></div>
+<p><strong>Symptom:</strong> <code>zensical build</code> exits 0, prints no warning, and writes zero
+files to <code>site/</code>. This reproduces 100% of the time, and only when <em>both</em>
+conditions hold: the config file is literally named <code>mkdocs.yml</code>, <strong>and</strong>
+its own <code>watch:</code> list contains an entry equal to that filename.</p>
+<p><strong>Fix:</strong> remove the self-referencing entry.</p>
+<div class="language-diff highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w"> </span>watch:
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w"> </span>  - docs
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="gd">-  - mkdocs.yml</span>
+</span></code></pre></div>
+<p>This is tracked upstream as
+<a href="https://github.com/zensical/zensical/issues/934">zensical/zensical#934</a>.
+Check whether it's fixed in the Zensical version you're installing before
+assuming you still need this workaround.</p>
+<h2 id="step-5-verify-output-matches-dont-just-eyeball-it">Step 5 — Verify output matches, don't just eyeball it<a class="headerlink" href="#step-5-verify-output-matches-dont-just-eyeball-it" title="Permanent link">¶</a></h2>
+<p>Once both builders produce a non-empty <code>site/</code>, confirm they agree on the
+things that actually matter to readers, not just page counts. For anything
+templated (meta tags, generated navigation, anything driven by a plugin or
+hook), grep the same selector out of both builds and diff them:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">'&lt;meta (property|name)="(og|twitter)'</span><span class="w"> </span>site/index.html<span class="w"> </span>&gt;<span class="w"> </span>/tmp/mkdocs-tags.txt
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>zensical<span class="w"> </span>build<span class="w"> </span>-s<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">'&lt;meta (property|name)="(og|twitter)'</span><span class="w"> </span>site/index.html<span class="w"> </span>&gt;<span class="w"> </span>/tmp/zensical-tags.txt
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>diff<span class="w"> </span>/tmp/mkdocs-tags.txt<span class="w"> </span>/tmp/zensical-tags.txt
+</span></code></pre></div>
+<p>Do this for at least one page that exercises whatever templating your site
+relies on, and one plain page that doesn't — a divergence that only shows
+up on one of the two tells you exactly which feature needs Step 6's
+treatment.</p>
+<h2 id="step-6-replace-hooks-with-a-theme-override">Step 6 — Replace <code>hooks:</code> with a theme override<a class="headerlink" href="#step-6-replace-hooks-with-a-theme-override" title="Permanent link">¶</a></h2>
+<p><code>hooks:</code> (MkDocs' Python post-build-processing mechanism) has no Zensical
+equivalent and isn't on its roadmap the way plugins are — Zensical is
+moving toward a Rust "module system" instead. If your <code>hooks:</code> file injects
+markup (the common case: per-page social preview meta tags driven by an
+<code>image:</code> frontmatter field), you likely don't need to wait for Zensical to
+support it. Check whether your theme's <code>base.html</code> exposes an
+<code>{% block extrahead %}{% endblock %}</code> — both <code>mkdocs-material</code> and
+Zensical's <code>classic</code> variant do — and move the logic there instead:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">theme</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">custom_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">overrides</span><span class="w">   </span><span class="c1"># holds main.html, extending base.html</span>
+</span></code></pre></div>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cm">&lt;!-- overrides/main.html --&gt;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>{% extends "base.html" %}
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>{% block extrahead %}
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  {{ super() }}
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  {% if page and page.meta and page.meta.image %}
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">"og:image"</span> <span class="na">content</span><span class="o">=</span><span class="s">"{{ page.meta.image }}"</span><span class="p">&gt;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">"twitter:image"</span> <span class="na">content</span><span class="o">=</span><span class="s">"{{ page.meta.image }}"</span><span class="p">&gt;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  {% endif %}
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>{% endblock %}
+</span></code></pre></div>
+<p>Template overrides are plain Jinja under MkDocs and MiniJinja under
+Zensical — no Python involved — so this is one file that works identically
+on both builders, instead of a Python <code>hooks:</code> file that only ever worked
+on one. Delete the old <code>hooks:</code>-based file once the override is verified
+(Step 5's diff technique) to match its output exactly; keeping both active
+would double-emit the same tags under MkDocs.</p>
+<h2 id="step-7-update-your-deployment-gh-deploy-has-no-equivalent">Step 7 — Update your deployment: <code>gh-deploy</code> has no equivalent<a class="headerlink" href="#step-7-update-your-deployment-gh-deploy-has-no-equivalent" title="Permanent link">¶</a></h2>
+<p><code>zensical gh-deploy</code> doesn't exist as a command. The documented replacement
+is a GitHub Actions workflow that builds with Zensical and deploys through
+GitHub's native "Pages from Actions" mechanism — which also means you never
+get a <code>gh-pages</code> branch, sidestepping the classic "gh-pages became my
+default branch" footgun that comes with <code>mkdocs gh-deploy</code>.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># .github/workflows/docs.yml</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">on</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nt">permissions</span><span class="p">:</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="nt">pages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github-pages</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.deployment.outputs.page_url }}</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/configure-pages@v6</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v7</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v6</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.x</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install zensical</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zensical build --clean</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-pages-artifact@v5</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">site</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/deploy-pages@v5</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deployment</span>
+</span></code></pre></div>
+<p>Before your first push, enable the "GitHub Actions" Pages source — either
+in the repo's Settings → Pages UI, or via the API:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>api<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>repos/OWNER/REPO/pages<span class="w"> </span>-f<span class="w"> </span><span class="nv">build_type</span><span class="o">=</span>workflow
+</span></code></pre></div>
+<p><strong>Race-condition gotcha:</strong> if you push to <code>main</code> before that Pages source
+finishes enabling, the triggered run can fail with "Get Pages site failed.
+Please verify that the repository has Pages enabled..." even though your
+build itself was fine. Just rerun it once Pages is confirmed enabled:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gh<span class="w"> </span>run<span class="w"> </span>rerun<span class="w"> </span>&lt;run-id&gt;<span class="w"> </span>--repo<span class="w"> </span>OWNER/REPO
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>gh<span class="w"> </span>run<span class="w"> </span>watch<span class="w"> </span>&lt;run-id&gt;<span class="w"> </span>--repo<span class="w"> </span>OWNER/REPO<span class="w"> </span>--exit-status
+</span></code></pre></div>
+<h2 id="step-8-cut-over-but-keep-mkdocs-build-strict-as-your-safety-net">Step 8 — Cut over, but keep <code>mkdocs build --strict</code> as your safety net<a class="headerlink" href="#step-8-cut-over-but-keep-mkdocs-build-strict-as-your-safety-net" title="Permanent link">¶</a></h2>
+<p>Once Steps 3-7 are done and Step 5's diffs come back clean, you can make
+<code>zensical build</code>/<code>zensical serve</code> your day-to-day commands — they're
+faster. But don't retire <code>mkdocs build --strict</code> yet: it still catches
+things Zensical doesn't flag today, like nav omissions and broken internal
+links. Run it as the authoritative correctness check before calling any
+change verified, even on a project whose everyday builds already use
+Zensical. This project's own <a href="https://github.com/dmccreary/zensical-test/blob/main/AGENTS.md">AGENTS.md</a>
+encodes exactly this rule for coding agents working in this repo.</p>
+<h2 id="quick-reference-known-gaps-as-of-zensical-0061">Quick-reference: known gaps as of Zensical 0.0.61<a class="headerlink" href="#quick-reference-known-gaps-as-of-zensical-0061" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Symptom</th>
+<th>Workaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>exclude_docs:</code> silently ignored</td>
+<td>Files meant to be hidden (e.g. <code>TODO.md</code>, <code>image-prompt*.md</code>) build and get indexed anyway</td>
+<td>None yet — keep such files out of <code>docs/</code> entirely until this ships</td>
+</tr>
+<tr>
+<td><code>social</code> plugin (auto-generated card <em>images</em>) not implemented</td>
+<td>No Cairo-composited social card for pages without their own <code>image:</code></td>
+<td>Give every page its own <code>image:</code> frontmatter (Step 6 covers the resulting meta tags)</td>
+</tr>
+<tr>
+<td><code>hooks:</code> unsupported</td>
+<td>Any Python post-build logic silently never runs</td>
+<td>Move markup-injecting logic to a <code>theme.custom_dir</code> template override (Step 6)</td>
+</tr>
+<tr>
+<td>Self-referencing <code>watch:</code> entry</td>
+<td><code>zensical build</code> exits 0 with an empty <code>site/</code>, no warning</td>
+<td>Remove the entry matching the config's own filename (Step 4); track <a href="https://github.com/zensical/zensical/issues/934">#934</a></td>
+</tr>
+<tr>
+<td><code>gh-deploy</code> has no equivalent</td>
+<td><code>Error: No such command 'gh-deploy'</code></td>
+<td>GitHub Actions + Pages-from-Actions workflow (Step 7)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verification-checklist">Verification checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p><code>zensical build -s</code> produces the same page count as <code>mkdocs build
+  --strict</code>.</p>
+</li>
+<li>
+<p><code>mkdocs.yml</code> has been checked against the unsupported-settings and
+  unsupported-flag lists in Step 3.</p>
+</li>
+<li>
+<p>The <code>watch:</code> block, if present, does not contain an entry matching the
+  config file's own name.</p>
+</li>
+<li>
+<p>Templated output (meta tags, or anything else a <code>hooks:</code> file used to
+  produce) has been diffed between both builders, not just visually
+  skimmed.</p>
+</li>
+<li>
+<p>Deployment no longer depends on <code>mkdocs gh-deploy</code>.</p>
+</li>
+<li>
+<p><code>mkdocs build --strict</code> still runs as the authoritative check, even after
+  <code>zensical build</code> becomes the everyday command.</p>
+</li>
+</ul>
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../why-zensical/">Why Zensical?</a> — the architectural case for making this
+  switch at all.</li>
+<li><a href="../background-on-web-publishing-tools/">Background on Web Publishing Tools</a> —
+  where MkDocs and Zensical sit in six decades of publishing-tool history,
+  plus an interactive look at sequential versus parallel build scheduling.</li>
+<li><a href="../references/">References</a> — links to the Zensical docs, GitHub
+  organization, and issue tracker.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../why-zensical/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Why Zensical?">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Why Zensical?
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../background-on-web-publishing-tools/" class="md-footer__link md-footer__link--next" aria-label="Next: Background on Web Publishing Tools">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Background on Web Publishing Tools
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../js/katex.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

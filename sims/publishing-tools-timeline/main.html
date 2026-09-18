@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>History of Documentation and Publishing Tools</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/styles/vis-timeline-graph2d.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/umd/vis-timeline-graph2d.min.js"></script>
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="title">History of Documentation and Publishing Tools</div>
+        <div class="subtitle">From early book formatters to Zensical (1964 &ndash; 2025)</div>
+
+        <div class="filter-row" id="filter-row">
+            <button class="filter-btn active" data-category="all">All Events</button>
+            <button class="filter-btn" data-category="Early Publishing Tools">Early Publishing Tools</button>
+            <button class="filter-btn" data-category="Markup Languages">Markup Languages</button>
+            <button class="filter-btn" data-category="Markdown Ecosystem">Markdown Ecosystem</button>
+            <button class="filter-btn" data-category="Modern Doc-Site Generators">Modern Doc-Site Generators</button>
+            <button class="filter-btn" data-category="Rust &amp; Zensical">Rust &amp; Zensical</button>
+        </div>
+
+        <div id="timeline"></div>
+
+        <div class="nav-row">
+            <button class="nav-btn" id="pan-left">&#9664; Pan</button>
+            <button class="nav-btn" id="zoom-out">&minus; Zoom</button>
+            <button class="nav-btn" id="zoom-in">+ Zoom</button>
+            <button class="nav-btn" id="pan-right">Pan &#9654;</button>
+            <button class="nav-btn" id="fit-all">Fit All</button>
+        </div>
+
+        <div class="legend" id="legend"></div>
+
+        <div class="info-panel" id="info-panel">
+            <div class="info-title" id="info-title">Click any event to see details</div>
+            <div class="info-text" id="info-text">This timeline covers 60+ years of book and documentation publishing tools &mdash; from the first computerized document formatters, through the markup languages that structured the web, to the Rust-based tools now replacing them. Click a box above, or use the filter buttons to focus on one thread of the story.</div>
+        </div>
+    </div>
+</main>
+
+<script src="publishing-tools-timeline.js"></script>
+</body>
+</html>
