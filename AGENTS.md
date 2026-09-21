@@ -39,6 +39,8 @@ docs/migration-steps.md     step-by-step MkDocs -> Zensical migration guide;
 overrides/main.html         og:/twitter: meta-tag theme override (replaced
                              the old plugins/social_override.py hook — works
                              on both builders, see Build and serve rules)
+hooks/mkdocs_serve_warning.py  MkDocs-only guard: warns on `mkdocs serve`
+                             (Zensical never loads it — see Build and serve rules)
 docs/chapters/              chapter content, one directory per chapter
 docs/learning-graph/        concept list, taxonomy, dependency graph, metrics
 docs/sims/                  MicroSims, one directory per sim
@@ -73,28 +75,36 @@ docs/img/                   cover image, license badge, mascot poses
   faster of the two — but `mkdocs build --strict` remains the one
   **authoritative** check (see *Quality assurance* below): it catches nav
   omissions and broken links that Zensical doesn't yet flag, so a clean
-  `zensical build` alone never means a change is verified. Three
-  gaps remain as of Zensical 0.0.61 (third one confirmed still present in
-  0.0.62): `exclude_docs:` is silently ignored (no workaround yet; harmless
-  until a `TODO.md`/`image-prompt*.md` file exists); the `social` plugin
-  (Cairo-based auto-generated card *images*) isn't implemented; and
-  `zensical serve`'s dev server doesn't rewrite relative `<iframe src>` paths
-  the way `zensical build` does — a MicroSim iframe embedded with a plain
-  relative path (e.g. `sims/<sim-id>/main.html`) can 404 in local preview
-  while rendering fine once actually deployed (`zensical build` and the live
-  site both rewrite it correctly; only `serve` doesn't). Verify against
-  `zensical build`'s output or the live site before "fixing" an iframe path
-  that looks broken only in `zensical serve` — see
-  [zensical/zensical#943](https://github.com/zensical/zensical/issues/943).
+  `zensical build` alone never means a change is verified. Two gaps remain
+  as of Zensical 0.0.61: `exclude_docs:` is silently ignored (no workaround
+  yet; harmless until a `TODO.md`/`image-prompt*.md` file exists), and the
+  `social` plugin (Cairo-based auto-generated card *images*) isn't
+  implemented. **Relative `<iframe src>` paths are NOT a gap:** `zensical
+  build` and `zensical serve` rewrite them identically (checked on 0.0.62
+  and 0.0.63) — a page like `docs/background-on-web-publishing-tools.md`
+  embedding `sims/<sim-id>/main.html` is served as
+  `../sims/<sim-id>/main.html`. **MkDocs does not rewrite them**, so the same
+  iframe 404s under `mkdocs serve` and in `mkdocs build` output. If an
+  iframe looks broken in local preview, first check which server is
+  actually running (`zensical` isn't even on the PATH in the `mkdocs` env)
+  before touching the path. An earlier report blaming `zensical serve`,
+  [zensical/zensical#943](https://github.com/zensical/zensical/issues/943),
+  was closed as not reproducible.
   **Per-page social preview meta tags (`og:image` /
   `twitter:image`) DO work on both builders** — implemented as a theme
   override at `overrides/main.html` (extends `base.html`'s `extrahead`
   block) rather than a `hooks:` entry, since `hooks:` (Python
   post-processing) is unsupported under Zensical but template overrides are
   plain Jinja/MiniJinja and work on both. **Do not reintroduce
-  `plugins/social_override.py` or a `hooks:` block** — the override
-  supersedes it; keeping both would double-emit the same meta tags under
-  mkdocs. **Never add an entry matching the config
+  `plugins/social_override.py` or any `hooks:` entry that changes page
+  output** — the override supersedes it; keeping both would double-emit the
+  same meta tags under mkdocs. **The one sanctioned hook** is
+  `hooks/mkdocs_serve_warning.py`: a MkDocs-only guard that logs a warning
+  on `mkdocs serve` (MkDocs doesn't rewrite relative `<iframe src>` paths,
+  so MicroSims on top-level pages look broken there). Zensical never loads
+  `hooks:` entries (verified on 0.0.62 and 0.0.63), and the hook stays
+  silent on `mkdocs build`, so `mkdocs build --strict` still passes; keep it
+  that way — never make it warn on `build`. **Never add an entry matching the config
   file's own name (`mkdocs.yml`) to `watch:`** — this makes Zensical
   silently emit zero pages
   ([zensical/zensical#934](https://github.com/zensical/zensical/issues/934)).
@@ -135,6 +145,11 @@ Full rationale and fallback caveats for all of these:
   self-referencing `watch:` bug, the `hooks:` replacement, the `gh-deploy`
   deployment change) are each non-obvious and were rediscovered the hard way
   exactly once, on this repo, so they don't need rediscovering again.
+- **During the transition period, every site designed with Zensical — new
+  or migrated — should carry the `mkdocs serve` warning hook** described in
+  Step 9 of that guide (this repo's own copy is
+  `hooks/mkdocs_serve_warning.py`), for as long as MkDocs is still
+  installed alongside Zensical. Remove it once MkDocs is retired.
 - **This project deploys via GitHub Actions**
   (`.github/workflows/docs.yml`), not `mkdocs gh-deploy` — and
   `zensical gh-deploy` isn't a real command at all (`Error: No such command

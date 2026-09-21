@@ -181,6 +181,11 @@ on one. Delete the old `hooks:`-based file once the override is verified
 (Step 5's diff technique) to match its output exactly; keeping both active
 would double-emit the same tags under MkDocs.
 
+(There is one legitimate use for a `hooks:` file in a repo that still builds
+with both tools: a MkDocs-only guard that warns people who run `mkdocs
+serve` by mistake. It changes no output and Zensical never loads it — see
+Step 9.)
+
 ## Step 7 — Update your deployment: `gh-deploy` has no equivalent
 
 `zensical gh-deploy` doesn't exist as a command. The documented replacement
@@ -249,6 +254,81 @@ change verified, even on a project whose everyday builds already use
 Zensical. This project's own [AGENTS.md](https://github.com/dmccreary/zensical-test/blob/main/AGENTS.md)
 encodes exactly this rule for coding agents working in this repo.
 
+## Step 9 — During the transition, warn anyone who still runs `mkdocs serve`
+
+**Recommended for every site designed for Zensical — new or migrated — for as
+long as MkDocs is still installed alongside it.** Nothing stops someone from
+typing `mkdocs serve` out of habit (it can even be installed in the same
+conda environment as Zensical), and it starts without complaint while
+rendering the book differently. The most visible difference: MkDocs does not
+rewrite relative `<iframe src>` paths, so a MicroSim embedded as
+`sims/<id>/main.html` from a page at the docs root shows as a broken frame,
+whereas both `zensical build` and `zensical serve` rewrite it to
+`../sims/<id>/main.html`. Nothing tells the reader they are looking at the
+wrong renderer. A bug report blaming `zensical serve` for exactly this
+symptom ([zensical/zensical#943](https://github.com/zensical/zensical/issues/943))
+was closed as not reproducible: the behavior it described is what `mkdocs
+serve` does, not what `zensical serve` does.
+
+A small MkDocs-only hook turns that silent confusion into a clear warning.
+Save it as `hooks/mkdocs_serve_warning.py`:
+
+```python
+"""MkDocs-only hook: warn when this site is previewed with `mkdocs serve`."""
+
+import logging
+import sys
+
+log = logging.getLogger("mkdocs.hooks.serve-warning")
+
+# One logical line per sentence group, no manual padding: in a terminal
+# MkDocs' log formatter wraps each line to the window width and indents
+# continuation lines itself, so hand-aligned text ends up double-indented.
+MESSAGE = (
+    "You are running `mkdocs serve`, but this site is built and deployed "
+    "with Zensical.\n"
+    "MkDocs renders it differently: it does not rewrite relative <iframe src> "
+    "paths, so MicroSims embedded from top-level pages appear as broken "
+    "frames in this preview.\n"
+    "Use `zensical serve` instead (see AGENTS.md)."
+)
+
+
+def _subcommand():
+    """The mkdocs subcommand actually typed: the first non-option argument."""
+    return next((arg for arg in sys.argv[1:] if not arg.startswith("-")), None)
+
+
+def on_startup(command, dirty):
+    # `mkdocs serve --clean` reports command == "build", so also check argv.
+    if command == "serve" or _subcommand() == "serve":
+        log.warning(MESSAGE)
+```
+
+and register it in `mkdocs.yml`:
+
+```yaml
+hooks:
+  - hooks/mkdocs_serve_warning.py
+```
+
+Four things make this safe and useful:
+
+- **Zensical never loads it.** `hooks:` entries are ignored by Zensical (an
+  import probe confirmed this on 0.0.62 and 0.0.63), so the file only ever
+  runs under MkDocs and the same `mkdocs.yml` stays valid for both builders.
+- **It warns on `serve` only, never on `build`.** A warning during `mkdocs
+  build` would make `mkdocs build --strict` — your authoritative check from
+  Step 8 — fail.
+- **It checks `sys.argv` as well as `command`.** MkDocs reports `mkdocs serve
+  --clean` as `command == "build"`, which would otherwise slip through.
+- **Don't hand-indent the message.** In a real terminal MkDocs wraps each
+  line and indents continuation lines by 11 columns on its own.
+
+Customize the message with a page from your own site that is actually
+affected. When the transition ends and MkDocs is no longer installed, delete
+`hooks/` and the `hooks:` entry.
+
 ## Quick-reference: known gaps as of Zensical 0.0.61
 
 | Gap | Symptom | Workaround |
@@ -278,6 +358,9 @@ encodes exactly this rule for coding agents working in this repo.
 
 - `mkdocs build --strict` still runs as the authoritative check, even after
   `zensical build` becomes the everyday command.
+
+- While MkDocs is still installed, the `mkdocs serve` warning hook from
+  Step 9 is in place, and `mkdocs build --strict` still exits clean with it.
 
 ## Further reading
 

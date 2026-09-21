@@ -171,6 +171,16 @@ extra_javascript:
 watch:
   - docs
 
+# MkDocs-only guard: log a warning when someone previews this book with
+# `mkdocs serve`. MkDocs doesn't rewrite relative <iframe src> paths, so
+# MicroSims embedded from top-level pages show as broken frames there.
+# Zensical never loads `hooks:` entries (verified on 0.0.62 and 0.0.63), and
+# the hook stays silent on `mkdocs build`, so `mkdocs build --strict` is
+# unaffected. Do NOT add page-output logic to a hook -- see the social
+# preview note at the top of this file.
+hooks:
+  - hooks/mkdocs_serve_warning.py
+
 # Extra
 extra:
   # Suppress the "Made with Material for MkDocs" footer line
