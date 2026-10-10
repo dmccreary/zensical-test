@@ -1,17 +1,14 @@
 {
   "title": "ZRX Parallel Build Pipeline",
   "creator": "Dan McCreary",
-  "subject": "High School Geometry",
+  "subject": "Migrating from MkDocs to Zensical",
   "description": "Interactive MicroSim for zrx parallel build pipeline",
   "date": "2026-09-14",
   "educational": {
     "gradeLevel": [
-      "9",
-      "10",
-      "11",
-      "12"
+      "Adult"
     ],
-    "subjectArea": "Mathematics",
+    "subjectArea": "Computer Science",
     "topic": "ZRX Parallel Build Pipeline",
     "learningObjectives": [
       "TODO: Add learning objectives"
